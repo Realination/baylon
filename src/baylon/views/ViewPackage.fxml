@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import java.net.URL?>
+
+<AnchorPane prefHeight="498.0" prefWidth="606.0" styleClass="root" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baylon.controllers.ViewPackageController">
+   <children>
+      <Label layoutX="20.0" layoutY="115.0" styleClass="h4" text="Services:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="115.0" />
+       <Label fx:id="lblHeader" alignment="CENTER" layoutX="7.0" prefHeight="44.0" prefWidth="606.0" style="-fx-background-color:#333" styleClass="h4,text-white" text="Product name" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <TableView fx:id="tblServices" layoutX="19.0" layoutY="73.0" prefHeight="273.0" prefWidth="566.0" AnchorPane.bottomAnchor="76.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="149.0">
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy></TableView>
+      <Label layoutX="31.0" layoutY="71.0" text="Name:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="72.0" />
+      <Label layoutX="30.0" layoutY="94.0" text="Description:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="94.0" />
+      <Label layoutX="315.0" layoutY="72.0" text="Price:" AnchorPane.rightAnchor="251.0" AnchorPane.topAnchor="72.0" />
+      <Label fx:id="lblpname" layoutX="77.0" layoutY="72.0" prefHeight="18.0" prefWidth="236.0" text="Label" AnchorPane.leftAnchor="77.0" AnchorPane.topAnchor="72.0" />
+      <Label fx:id="lbldesc" layoutX="115.0" layoutY="94.0" prefHeight="18.0" prefWidth="471.0" text="Label" AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="94.0" />
+      <Label fx:id="lblprice" layoutX="355.0" layoutY="72.0" prefHeight="18.0" prefWidth="247.0" text="Label" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="72.0" />
+      <Button fx:id="btnAddService" layoutX="440.0" layoutY="112.0" mnemonicParsing="false" onAction="#addService" prefHeight="30.0" prefWidth="148.0" styleClass="btn-primary" text="Add Service" AnchorPane.rightAnchor="18.0" />
+      <VBox alignment="CENTER" layoutX="22.0" layoutY="433.0" prefHeight="51.0" prefWidth="566.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="51.0" prefWidth="251.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#cancelOrder" prefHeight="44.0" prefWidth="148.0" styleClass="btn-danger" text="Cancel" />
+                  <Separator orientation="VERTICAL" prefHeight="51.0" prefWidth="208.0" />
+                  <Button fx:id="btnConfirm" mnemonicParsing="false" onAction="#confirmOrder" prefHeight="44.0" prefWidth="148.0" styleClass="btn-success" text="Confirm" textAlignment="CENTER" />
+               </children>
+            </HBox>
+         </children></VBox>
+      <Label layoutX="12.0" layoutY="56.0" prefHeight="18.0" prefWidth="552.0" />
+   </children>
+    <stylesheets>
+        <URL value="@css/fextile.css" />
+    </stylesheets>
+</AnchorPane>

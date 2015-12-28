@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+
+<AnchorPane id="AnchorPane" fx:id="mainPanel" prefHeight="488.0" prefWidth="650.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baylon.controllers.LoginController">
+    
+   <children>
+      <ImageView fx:id="gifBG" cache="true" cacheHint="SPEED" fitHeight="488.0" fitWidth="659.0" pickOnBounds="true" smooth="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-9.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../media/rose.gif" />
+         </image></ImageView>
+      <Label fx:id="lblError" alignment="CENTER" layoutX="-2.0" layoutY="2.0" prefHeight="34.0" prefWidth="650.0" text="Invalid Login!!" textAlignment="CENTER" textFill="RED" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <styleClass>
+            <String fx:value="alert-danger" />
+            <String fx:value="text-center" />
+         </styleClass>
+      </Label>
+      <Pane fx:id="panelLogin" layoutX="139.0" layoutY="177.0" prefHeight="211.0" prefWidth="401.0" styleClass="loginPane">
+         <children>
+            <ImageView cache="true" cacheHint="SPEED" fitHeight="121.0" fitWidth="489.0" layoutX="-32.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../media/vintage_rose_border.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="57.0" layoutY="58.0" prefHeight="34.0" prefWidth="189.0" text="Password:">
+               <styleClass>
+                  <String fx:value="h3" />
+                  <String fx:value="text-white" />
+               </styleClass>
+            </Label>
+            <Button fx:id="btncancel" cancelButton="true" layoutX="57.0" layoutY="152.0" mnemonicParsing="false" onAction="#cancel" prefHeight="30.0" prefWidth="149.0" styleClass="btn-default" text="Cancel" />
+            <Label layoutX="57.0" prefHeight="50.0" prefWidth="189.0" text="Username:">
+               <styleClass>
+                  <String fx:value="h3" />
+                  <String fx:value="text-white" />
+               </styleClass>
+            </Label>
+            <TextField fx:id="txtuser" layoutX="57.0" layoutY="50.0" prefHeight="30.0" prefWidth="289.0" promptText="Enter Username" text="administrator" />
+            <PasswordField fx:id="txtpass" layoutX="56.0" layoutY="108.0" prefHeight="30.0" prefWidth="289.0" promptText="Enter Password" text="admin" />
+            <Button fx:id="btnlogin" defaultButton="true" layoutX="211.0" layoutY="152.0" mnemonicParsing="false" onAction="#login" prefHeight="30.0" prefWidth="135.0" styleClass="btn-primary" text="Login" />
+         </children>
+      </Pane>
+      <Label alignment="CENTER" layoutX="135.0" layoutY="14.0" prefHeight="86.0" prefWidth="107.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+         <graphic>
+            <ImageView fx:id="imgLogo" cache="true" cacheHint="SPEED" fitHeight="181.0" fitWidth="514.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../media/logopink.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Label>
+   </children>
+   
+   <stylesheets>
+  <URL value="@css/fextile.css" />
+</stylesheets>
+</AnchorPane>

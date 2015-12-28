@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<AnchorPane fx:id="dashboardPanel" prefHeight="476.0" prefWidth="606.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baylon.controllers.PendingOrdersController">
+   <children>
+      <Label alignment="CENTER" layoutX="20.0" layoutY="71.0" prefHeight="31.0" prefWidth="600.0" styleClass="h4" text="Pending Orders" textAlignment="CENTER" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="71.0" />
+      <TabPane layoutX="40.0" layoutY="115.0" prefHeight="331.0" prefWidth="566.0" rotateGraphic="true" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="115.0">
+         <tabs>
+            <Tab closable="false" text="Online Orders">
+               <content>
+                  <TableView fx:id="PendingOnlineOrdersTable" layoutX="40.0" layoutY="115.0" prefHeight="331.0" prefWidth="566.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="115.0">
+                    </TableView>
+               </content>
+            </Tab>
+            <Tab closable="false" text="Walk-In Orders">
+              <content>
+                  <TableView  fx:id="PendingOfflineOrdersTable"  layoutX="40.0" layoutY="115.0" prefHeight="331.0" prefWidth="566.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="115.0">
+                  </TableView>
+              </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </children>
+    <stylesheets>
+        <URL value="@css/fextile.css" />
+    </stylesheets>
+   <padding>
+      <Insets bottom="30.0" left="20.0" right="20.0" />
+   </padding>
+</AnchorPane>

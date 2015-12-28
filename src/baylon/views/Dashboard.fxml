@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+
+<AnchorPane fx:id="dashboardPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="363.0" prefWidth="600.0" style="-fx-background-radius: 8,7,6;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baylon.controllers.DashboardController">
+   <children>
+      <SplitPane fx:id="dashoardSplit" dividerPositions="0.9933110367892977" layoutX="-3.0" layoutY="6.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="314.0" prefWidth="600.0" styleClass="root" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane fx:id="menuAnchorPane">
+               <children>
+                  <GridPane fx:id="mmenuPane" layoutX="58.0" layoutY="123.0" prefHeight="220.0" prefWidth="552.0" AnchorPane.bottomAnchor="71.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="103.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#Ordering" styleClass="mmenu" text="Ordering" />
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="112.0" prefWidth="208.0" styleClass="mmenu" text="Button" GridPane.columnIndex="1" />
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="112.0" prefWidth="208.0" styleClass="mmenu" text="Button" GridPane.columnIndex="2" />
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="112.0" prefWidth="208.0" styleClass="mmenu" text="Button" GridPane.columnIndex="3" />
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#pendingOrders" prefHeight="112.0" prefWidth="208.0" styleClass="mmenu" text="Pending Orders" GridPane.rowIndex="1" />
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="112.0" prefWidth="208.0" styleClass="mmenu" text="Current Wakes" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="107.0" prefWidth="153.0" styleClass="mmenu" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#userMaintenance" prefHeight="112.0" prefWidth="208.0" styleClass="mmenu" text="Users Maintenance" GridPane.rowIndex="2" />
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#personelMaintenance" prefHeight="112.0" prefWidth="208.0" styleClass="mmenu" text="Personel Maintenance" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="112.0" prefWidth="208.0" styleClass="mmenu" text="Package Maintenance" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="86.0" prefWidth="117.0" styleClass="mmenu" text="Deceased List" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="208.0" prefWidth="232.0" styleClass="mmenu" text="Services Maintenance" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+            <Pane fx:id="contentPane" layoutY="39.0" prefHeight="320.0" prefWidth="0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
+               <children>
+                  <AnchorPane fx:id="contentContainer" layoutY="39.0" prefHeight="278.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0" />
+               </children>
+            </Pane>
+         </items>
+      </SplitPane>
+      <AnchorPane fx:id="bannerPane" prefHeight="45.0" prefWidth="600.0" style="-fx-background-color:#333" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button fx:id="btnBackToMenu" layoutX="14.0" layoutY="4.0" mnemonicParsing="false" onAction="#closePane" styleClass="btn-danger" text="Back" visible="false" />
+            <ComboBox fx:id="cboxUser" layoutX="436.0" layoutY="9.0" prefWidth="150.0" promptText="sasa" styleClass="combo-box" AnchorPane.rightAnchor="14.0" />
+            <Circle fx:id="statsCircle" fill="#06971e" layoutX="315.0" layoutY="23.0" radius="9.0" stroke="#b9a4a4" strokeLineCap="ROUND" strokeType="INSIDE" AnchorPane.rightAnchor="276.0">
+               <effect>
+                  <Glow level="0.8" />
+               </effect></Circle>
+            <Label fx:id="lblnetStats" layoutX="331.0" layoutY="13.0" prefHeight="18.0" prefWidth="97.0" style="-fx-text-fill: white;" text="Synchronized" AnchorPane.rightAnchor="172.0" />
+         </children>
+      </AnchorPane>
+     
+   </children>
+
+    <stylesheets>
+        <URL value="@css/fextile.css" />
+    </stylesheets>
+</AnchorPane>
