@@ -126,10 +126,17 @@ public class SelectSuboptionController {
         ResultSet defPackage = tblpackages.get(packageId);
         defPackage.first();
         String[] oldServ = defPackage.getString("services").split(",");
-        String currServ = oldServ[serviceIndex];
 
-        final String[] servData = currServ.split("-");
+        String[] dServData;
+        try {
+            String currServ = oldServ[serviceIndex];
+            dServData = currServ.split("-");
+        }catch (Exception e){
+            String CustomServiceString = "1-1-"+loadedArr[2]+"-"+loadedArr[3];
+            dServData = CustomServiceString.split("-");
+        }
 
+        final String[] servData = dServData;
         timerQty = new Timer();
 
         txtqty.textProperty().addListener(new ChangeListener<String>() {
@@ -329,7 +336,15 @@ public class SelectSuboptionController {
 
 
         String[] packServices = packages.getString("services").split(",");
-        String[] packData = packServices[serviceIndex].split("-");
+
+        String[] packData;
+        try {
+             packData = packServices[serviceIndex].split("-");
+        }catch (Exception e){
+            String CustomServiceString = "1-1-"+loadedArr[2]+"-"+loadedArr[3];
+            packData = CustomServiceString.split("-");
+        }
+
 
         ResultSet oldSuboption = tblsubs.get(packData[3]);
         oldSuboption.first();
@@ -419,7 +434,14 @@ public class SelectSuboptionController {
         System.out.println("addedprice="+addedPrice);
         System.out.println("packagePrice="+packagePrice);
 
-        double newPrice = packagePrice + addedPrice;
+        double newPrice = 0;
+//        try {
+//            String dummy = packServices[serviceIndex];
+            newPrice = packagePrice + addedPrice;
+//        }catch (Exception e){
+//            newPrice = packagePrice + addedPrice - servicePrice;
+//        }
+
         System.out.println("newprice="+newPrice);
         ArrayList<NameValuePair> nvp = new ArrayList<NameValuePair>();
         nvp.add(new BasicNameValuePair("custom_price",newPrice+""));

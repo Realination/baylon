@@ -53,6 +53,8 @@ public class ViewPackageController {
     TableView tblServices;
     @FXML
     Button btnConfirm,btnAddService;
+    @FXML
+    Stage myStage;
     String newServices =  "";
     BaylonFunctions funcs = new BaylonFunctions();
     public void initialize() {
@@ -298,7 +300,26 @@ public class ViewPackageController {
     }
 
     @FXML
-    void confirmOrder(){
+    void confirmOrder() throws IOException {
+        Stage oldstage = (Stage) lblpname.getScene().getWindow();
+        oldstage.close();
+        Stage stage = new Stage();
 
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/baylon/views/SelectCustomer.fxml"));
+        Parent root = fxmlLoader.load();
+        SelectCustomerController controller = fxmlLoader.getController();
+
+        stage.setScene(new Scene(root));
+
+//            controller.initialize();
+
+        stage.setWidth(Screen.getMainScreen().getWidth()*0.80);
+        stage.setHeight(Screen.getMainScreen().getHeight()*0.80);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Baylon | Select Customer");
+
+        stage.show();
     }
 }

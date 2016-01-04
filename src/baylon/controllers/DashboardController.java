@@ -164,7 +164,6 @@ public class DashboardController implements Initializable {
             page.setMinWidth(com.sun.glass.ui.Screen.getMainScreen().getWidth());
             contentPane.getChildren().clear();///name of pane where you want to put the fxml.
             contentPane.getChildren().add(page);
-
             btnBackToMenu.setVisible(true);
         }
         catch (IOException e) {

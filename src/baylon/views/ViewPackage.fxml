@@ -28,7 +28,7 @@
                <children>
                   <Button mnemonicParsing="false" onAction="#cancelOrder" prefHeight="44.0" prefWidth="148.0" styleClass="btn-danger" text="Cancel" />
                   <Separator orientation="VERTICAL" prefHeight="51.0" prefWidth="208.0" />
-                  <Button fx:id="btnConfirm" mnemonicParsing="false" onAction="#confirmOrder" prefHeight="44.0" prefWidth="148.0" styleClass="btn-success" text="Confirm" textAlignment="CENTER" />
+                  <Button fx:id="btnConfirm" mnemonicParsing="false" onAction="#confirmOrder" prefHeight="44.0" prefWidth="148.0" styleClass="btn-success" text="Proceed" textAlignment="CENTER" />
                </children>
             </HBox>
          </children></VBox>
