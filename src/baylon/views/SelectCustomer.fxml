@@ -6,10 +6,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="476.0" prefWidth="679.0" styleClass="root" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baylon.controllers.SelectCustomerController">
+<AnchorPane prefHeight="476.0" prefWidth="679.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baylon.controllers.SelectCustomerController">
     <children>
         <Label fx:id="lblHeader" alignment="CENTER" layoutX="7.0" prefHeight="44.0" prefWidth="606.0" style="-fx-background-color:#333" styleClass="h4,text-white" text="Select Customer" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <SplitPane fx:id="customerSplitPane" dividerPositions="99.9" layoutX="7.0" layoutY="48.0" prefHeight="432.0" prefWidth="117.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="44.0">
+      <SplitPane fx:id="customerSplitPane" dividerPositions="1.0" layoutX="7.0" layoutY="48.0" prefHeight="432.0" prefWidth="117.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="44.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="430.0" prefWidth="355.0" styleClass="root">
                <children>
@@ -25,11 +25,30 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="430.0" prefWidth="448.0" styleClass="root">
                <children>
-                  <Label layoutX="14.0" layoutY="41.0" styleClass="h5" text="Customer Name:" />
+                  <Label layoutX="56.0" layoutY="41.0" styleClass="h5" text="Customer Name:" />
                   <Button layoutX="14.0" layoutY="8.0" mnemonicParsing="false" onAction="#switchToExisting" styleClass="btn-primary" text="Existing Customer" />
-                  <TextField layoutX="14.0" layoutY="72.0" promptText="First Name" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="72.0" />
-                  <TextField layoutX="206.0" layoutY="72.0" promptText="Middle Name" AnchorPane.leftAnchor="206.0" AnchorPane.topAnchor="72.0" />
-                  <TextField layoutX="398.0" layoutY="72.0" promptText="Last Name" AnchorPane.leftAnchor="398.0" AnchorPane.topAnchor="72.0" />
+                  <TextField layoutX="57.0" layoutY="74.0" promptText="Username" AnchorPane.leftAnchor="57.0" AnchorPane.topAnchor="74.0" />
+                  <TextField layoutX="249.0" layoutY="74.0" promptText="Password" AnchorPane.leftAnchor="249.0" AnchorPane.topAnchor="74.0" />
+                  <TextField layoutX="441.0" layoutY="74.0" promptText="Confirm Password" AnchorPane.leftAnchor="441.0" AnchorPane.topAnchor="74.0" />
+                  <TextField layoutX="441.0" layoutY="117.0" promptText="Last Name" />
+                  <TextField layoutX="249.0" layoutY="117.0" promptText="Middle Name" />
+                  <TextField layoutX="57.0" layoutY="117.0" promptText="First Name" />
+                  <TextField layoutX="57.0" layoutY="155.0" promptText="Landline Number" />
+                  <TextField layoutX="249.0" layoutY="155.0" promptText="Mobile Number" />
+                  <ComboBox layoutX="441.0" layoutY="200.0" prefHeight="30.0" prefWidth="175.0" promptText="Region" />
+                  <ComboBox layoutX="60.0" layoutY="245.0" prefHeight="30.0" prefWidth="175.0" promptText="Province" />
+                  <ComboBox layoutX="249.0" layoutY="245.0" prefHeight="30.0" prefWidth="175.0" promptText="Municipality" />
+                  <DatePicker layoutX="57.0" layoutY="287.0" prefHeight="30.0" prefWidth="175.0" promptText="mm/dd/yy" />
+                  <TextField layoutX="248.0" layoutY="287.0" prefHeight="30.0" prefWidth="54.0" promptText="Age" />
+                  <ComboBox layoutX="314.0" layoutY="287.0" prefHeight="30.0" prefWidth="104.0" promptText="Gender" />
+                  <TextField layoutX="441.0" layoutY="245.0" prefHeight="30.0" prefWidth="175.0" promptText="TIN Number" />
+                  <TextField layoutX="252.0" layoutY="331.0" promptText="Name of Spouse" />
+                  <TextField layoutX="60.0" layoutY="331.0" promptText="Marital Status" />
+                  <TextField layoutX="441.0" layoutY="287.0" prefHeight="30.0" prefWidth="175.0" promptText="Citizenship" />
+                  <TextField layoutX="60.0" layoutY="369.0" prefHeight="30.0" prefWidth="367.0" promptText="Company" />
+                  <TextField layoutX="441.0" layoutY="155.0" promptText="Email " />
+                  <TextField layoutX="252.0" layoutY="200.0" promptText="Zipcode" />
+                  <TextField layoutX="60.0" layoutY="200.0" promptText="Home Address" />
                </children></AnchorPane>
         </items>
       </SplitPane>

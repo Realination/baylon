@@ -1,8 +1,10 @@
 package baylon.app;
 
+import org.apache.http.HttpException;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
+import java.net.URISyntaxException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -56,7 +58,7 @@ public class BaylonFunctions {
     }
 
 
-    public boolean SyncAdd(ArrayList<NameValuePair> data,String table,String id){
+    public boolean SyncAdd(ArrayList<NameValuePair> data,String table,String id) throws URISyntaxException, HttpException {
         data.add(new BasicNameValuePair("offline_id",id));
         if(http.ServicePost("SyncUp.php?table="+table,data).equalsIgnoreCase("error")){
             return false;
@@ -65,7 +67,7 @@ public class BaylonFunctions {
         }
     }
 
-    public boolean SyncEdit(ArrayList<NameValuePair> data,String table,String id){
+    public boolean SyncEdit(ArrayList<NameValuePair> data,String table,String id) throws URISyntaxException, HttpException {
         if(http.ServicePost("SyncUp.php?table="+table+"&id="+id,data).equalsIgnoreCase("error")){
             return false;
         }else{
@@ -73,7 +75,7 @@ public class BaylonFunctions {
         }
     }
 
-    public boolean SyncDelete(ArrayList<NameValuePair> data,String table){
+    public boolean SyncDelete(ArrayList<NameValuePair> data,String table) throws URISyntaxException, HttpException {
         if(http.ServicePost("SyncUp.php?table="+table+"&delete=true",data).equalsIgnoreCase("error")){
             return false;
         }else{

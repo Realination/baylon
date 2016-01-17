@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="plexus-utils-2.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/repository/org/codehaus/plexus/plexus-utils/2.1/plexus-utils-2.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -10,8 +10,8 @@ package baylon.app;
  * @author DarkMatter
  */
 public class Settings {
-    public static final String api = "http://192.168.1.101/baylon/";
+    public static final String api = "http://192.168.1.201/baylon/";
     public static String url = "jdbc:mysql://localhost/baylon_offline";
     public static String user = "root";//Username of database
-    public static String pass = "troll";//Password of database
+    public static String pass = "";//Password of database
 }

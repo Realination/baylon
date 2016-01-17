@@ -26,10 +26,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
+import org.apache.http.HttpException;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -91,7 +93,13 @@ public class ViewPackageController {
             e.printStackTrace();
         }
         setColumns();
-        addToOrders();
+        try {
+            addToOrders();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        } catch (HttpException e) {
+            e.printStackTrace();
+        }
         populateTable(newServices);
         initListeners();
     }
@@ -166,7 +174,7 @@ public class ViewPackageController {
         }
     }
 
-    private void addToOrders() throws SQLException {
+    private void addToOrders() throws SQLException, URISyntaxException, HttpException {
         try {
             packages.first();
         } catch (SQLException e) {
@@ -314,10 +322,13 @@ public class ViewPackageController {
 
 //            controller.initialize();
 
-        stage.setWidth(Screen.getMainScreen().getWidth()*0.80);
-        stage.setHeight(Screen.getMainScreen().getHeight()*0.80);
+
+        stage.setWidth(Screen.getMainScreen().getWidth());
+        stage.setHeight(Screen.getMainScreen().getHeight());
+        stage.setMaximized(true);
+        stage.setFullScreen(true);
         stage.initStyle(StageStyle.UNDECORATED);
-        stage.initModality(Modality.APPLICATION_MODAL);
+//        stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("Baylon | Select Customer");
 
         stage.show();

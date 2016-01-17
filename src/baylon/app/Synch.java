@@ -4,12 +4,14 @@ import baylon.models.Deceased;
 import baylon.models.Orders;
 import baylon.models.Packages;
 import baylon.models.Users;
+import org.apache.http.HttpException;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URISyntaxException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -38,7 +40,7 @@ public class Synch extends TimerTask{
         }
     }
 
-    private void checkTables() {
+    private void checkTables() throws URISyntaxException, HttpException {
         try {
             //customers
             checkAdd("customers");
@@ -59,7 +61,7 @@ public class Synch extends TimerTask{
 
     }
 
-    private void checkEdit(String table) throws SQLException {
+    private void checkEdit(String table) throws SQLException, URISyntaxException, HttpException {
         Model model = models.get(table);
         ResultSet users = model.getAllAndSort("updated_at");
         String cdate = "0000-00-00 00:00:00";
@@ -84,7 +86,7 @@ public class Synch extends TimerTask{
     }
 
 
-    void checkAdd(String table) throws SQLException {
+    void checkAdd(String table) throws SQLException, URISyntaxException, HttpException {
         Model model = models.get(table);
         ResultSet users = model.getAllAndSort("created_at");
         String cdate = "0000-00-00 00:00:00";

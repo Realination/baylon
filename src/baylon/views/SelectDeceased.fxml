@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="476.0" prefWidth="679.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baylon.controllers.SelectDeceasedController">
+    <children>
+        <Label fx:id="lblHeader" alignment="CENTER" layoutX="7.0" prefHeight="44.0" prefWidth="606.0" style="-fx-background-color:#333" styleClass="h4,text-white" text="Select Deceased" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+        <SplitPane fx:id="customerSplitPane" dividerPositions="1.0" layoutX="7.0" layoutY="48.0" prefHeight="432.0" prefWidth="117.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="44.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="430.0" prefWidth="355.0" styleClass="root">
+                    <children>
+                        <TextField layoutX="10.0" layoutY="8.0" prefHeight="28.0" prefWidth="167.0" promptText="Search Deceased..." AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="8.0" />
+                        <Button layoutX="182.0" layoutY="7.0" mnemonicParsing="false" styleClass="btn-success" text="Search" AnchorPane.leftAnchor="182.0" AnchorPane.topAnchor="7.0" />
+                        <TableView fx:id="tableDeceased" layoutX="10.0" layoutY="43.0" prefHeight="381.0" prefWidth="576.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="42.0">
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                        </TableView>
+                        <Button layoutX="459.0" layoutY="7.0" mnemonicParsing="false" onAction="#switchToNew" styleClass="btn-primary" text="New Deceased" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="7.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="430.0" prefWidth="448.0" styleClass="root">
+                    <children>
+
+                    </children></AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
+    <stylesheets>
+        <URL value="@css/fextile.css" />
+    </stylesheets>
+</AnchorPane>

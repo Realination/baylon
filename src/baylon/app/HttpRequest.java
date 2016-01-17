@@ -5,6 +5,7 @@
  */
 package baylon.app;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpException;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -15,6 +16,7 @@ import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
  
 /**
@@ -27,7 +29,7 @@ public class HttpRequest {
     Constants constants;
     
     
-    public String ServiceGet(String url) {
+    public String ServiceGet(String url) throws URISyntaxException, HttpException {
         constants = Constants.getInstance();
         String respon = null;
         HttpGet httpGet = new HttpGet(baseUrl+url);
@@ -44,7 +46,7 @@ public class HttpRequest {
         return respon;
     }
     
-    public String ServicePost(String url, ArrayList nameValuePairs){
+    public String ServicePost(String url, ArrayList nameValuePairs) throws URISyntaxException, HttpException {
         String respon = null;
         constants = Constants.getInstance();
         System.out.println(baseUrl);
