@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="476.0" prefWidth="679.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baylon.controllers.ViewDeceasedDataController">
+<children>
+    <Label fx:id="lblHeader" alignment="CENTER" layoutX="7.0" prefHeight="44.0" prefWidth="606.0" style="-fx-background-color:#333" styleClass="h4,text-white" text="Deceased" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Label layoutX="20.0" layoutY="55.0" styleClass="small" text="Name" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="55.0" />
+      <Label fx:id="lblName" layoutX="25.0" layoutY="70.0" prefHeight="30.0" prefWidth="629.0" text="Label" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="70.0" />
+      <Label layoutX="20.0" layoutY="100.0" styleClass="small" text="Sex" />
+      <Label layoutX="127.0" layoutY="100.0" styleClass="small" text="Gender" />
+</children>
+<stylesheets>
+    <URL value="@css/fextile.css" />
+</stylesheets>
+</AnchorPane>

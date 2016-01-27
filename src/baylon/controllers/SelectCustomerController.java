@@ -5,6 +5,9 @@ import baylon.app.Constants;
 import baylon.app.TableHelper;
 import baylon.models.Customers;
 import baylon.models.Orders;
+import com.github.sarxos.webcam.Webcam;
+import com.github.sarxos.webcam.WebcamPanel;
+import com.github.sarxos.webcam.WebcamResolution;
 import com.sun.glass.ui.Screen;
 import de.jensd.shichimifx.utils.SplitPaneDividerSlider;
 import javafx.collections.FXCollections;
@@ -14,15 +17,20 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableView;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.apache.http.message.BasicNameValuePair;
 import org.omg.CORBA.NameValuePair;
 
+import javax.swing.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -38,6 +46,10 @@ public class SelectCustomerController {
     SplitPane customerSplitPane;
     @FXML
     TableView tableCustomers;
+    @FXML
+    ComboBox comboMarital,comboProvince,comboRegion,comboMunicipality,comboGender;
+    @FXML
+    AnchorPane imageAnchor;
 
     public static SplitPaneDividerSlider leftSplitPaneDividerSlider;
     Customers tblcustomers = new Customers();
@@ -51,6 +63,12 @@ public class SelectCustomerController {
         customerSplitPane.setMinWidth(com.sun.glass.ui.Screen.getMainScreen().getWidth());
         customerSplitPane.setDividerPosition(1,1);
         constants = Constants.getInstance();
+
+        ObservableList<String> maritalStats = FXCollections.observableArrayList("Single", "Married", "Widow/Widower");
+        comboMarital.setItems(maritalStats);
+        ObservableList<String> gender = FXCollections.observableArrayList("Male", "Female");
+        comboGender.setItems(gender);
+
 
         customers = tblcustomers.get();
         customers.first();
@@ -88,6 +106,8 @@ public class SelectCustomerController {
         });
 
         tableCustomers.setOnTouchPressed(event -> selectCustomer(tableCustomers.getSelectionModel().getSelectedIndex()));
+
+
     }
 
 
@@ -138,5 +158,40 @@ public class SelectCustomerController {
     @FXML
     void switchToExisting(){
         leftSplitPaneDividerSlider.setAimContentVisible(true);
+    }
+
+
+    @FXML
+    void registerCustomer(){
+        if(validateInput()){
+
+        }
+    }
+
+
+    @FXML
+    void takePhoto(){
+        Webcam webcam = Webcam.getDefault();
+        webcam.setViewSize(WebcamResolution.VGA.getSize());
+
+        WebcamPanel panel = new WebcamPanel(webcam);
+        panel.setFPSDisplayed(true);
+        panel.setDisplayDebugInfo(true);
+        panel.setImageSizeDisplayed(true);
+        panel.setMirrored(true);
+
+
+        JFrame window = new JFrame("Take Picture");
+        window.add(panel);
+        window.setResizable(false);
+        window.pack();
+        window.setVisible(true);
+
+
+    }
+
+
+    private boolean validateInput() {
+        return false;
     }
 }

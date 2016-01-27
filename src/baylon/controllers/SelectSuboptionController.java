@@ -86,7 +86,7 @@ public class SelectSuboptionController {
         services.first();
         ResultSet order = tblorders.get(constants.getValue("orderid"));
         order.first();
-        
+
         lblHeader.setText(services.getString("name"));
         lbltype.setText(supoptions.getString("name"));
         this.currentSuboption = supoptions.getString("id");

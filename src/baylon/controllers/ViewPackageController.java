@@ -311,7 +311,7 @@ public class ViewPackageController {
     void confirmOrder() throws IOException {
         Stage oldstage = (Stage) lblpname.getScene().getWindow();
         oldstage.close();
-        Stage stage = new Stage();
+        Stage stage = oldstage;
 
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/baylon/views/SelectCustomer.fxml"));
@@ -326,8 +326,8 @@ public class ViewPackageController {
         stage.setWidth(Screen.getMainScreen().getWidth());
         stage.setHeight(Screen.getMainScreen().getHeight());
         stage.setMaximized(true);
-        stage.setFullScreen(true);
-        stage.initStyle(StageStyle.UNDECORATED);
+//        stage.setFullScreen(true);
+//        stage.initStyle(StageStyle.UNDECORATED);
 //        stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("Baylon | Select Customer");
 

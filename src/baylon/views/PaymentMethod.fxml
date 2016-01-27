@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+
+<AnchorPane prefHeight="476.0" prefWidth="679.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baylon.controllers.PaymentMethodController">
+    <children>
+        <Label fx:id="lblHeader" alignment="CENTER" layoutX="7.0" prefHeight="44.0" prefWidth="606.0" style="-fx-background-color:#333" styleClass="h4,text-white" text="Select Payment Method" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <HBox alignment="CENTER" layoutY="141.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="141.0">
+         <children>
+            <Button fx:id="btnCash" mnemonicParsing="false" onAction="#selectCash" prefHeight="194.0" prefWidth="228.0" text="Cash" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+               <styleClass>
+                  <String fx:value="btn-primary" />
+                  <String fx:value="h2" />
+               </styleClass></Button>
+            <Button fx:id="btnBank" mnemonicParsing="false" onAction="#selectBank" prefHeight="194.0" prefWidth="219.0" text="Bank to Bank" HBox.hgrow="ALWAYS">
+               <styleClass>
+                  <String fx:value="btn-primary" />
+                  <String fx:value="h2" />
+               </styleClass></Button>
+            <Button fx:id="btnPaypal" contentDisplay="CENTER" mnemonicParsing="false" onAction="#selectPaypal" prefHeight="194.0" prefWidth="228.0" text="Paypal" HBox.hgrow="ALWAYS">
+               <styleClass>
+                  <String fx:value="btn-primary" />
+                  <String fx:value="h2" />
+               </styleClass></Button>
+         </children>
+      </HBox>
+    </children>
+    <stylesheets>
+        <URL value="@css/fextile.css" />
+    </stylesheets>
+</AnchorPane>

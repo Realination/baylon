@@ -3,6 +3,7 @@ package baylon.controllers;
 
 import baylon.app.Functions;
 import baylon.models.Admin;
+import baylon.models.Deceased;
 import baylon.models.Orders;
 import baylon.models.Users;
 import javafx.event.ActionEvent;
@@ -27,7 +28,7 @@ public class ProcessPaymentController {
      * Initializes the controller class.
      */
     @FXML
-    Label lblHeader,lblCustomer,lblOrderType,lblDateOrdered,lblSecretary,lblBill,lblChange,lbllblChange;
+    Label lblHeader,lblCustomer,lblOrderType,lblDateOrdered,lblSecretary,lblBill,lblChange,lbllblChange,lblDown,lblDeceased;
     @FXML
     TextField txtPaid;
     @FXML
@@ -37,7 +38,8 @@ public class ProcessPaymentController {
     Users tblusers = new Users();
     Admin tbladmin = new Admin();
     Orders orders = new Orders();
-    ResultSet users,admins;
+    Deceased tbldeceased = new Deceased();
+    ResultSet users,admins,deceased;
     public void initialize() throws SQLException {
 //
 
@@ -79,10 +81,14 @@ public class ProcessPaymentController {
             lblCustomer.setText("N/A");
         }
 
-
+        deceased = tbldeceased.get(record.getString("deceased"));
+        deceased.first();
         lblOrderType.setText(record.getString("order_type"));
         lblDateOrdered.setText(record.getString("created_at"));
         lblBill.setText(Functions.toMoney(record.getString("price")));
+        Double Down = record.getDouble("price")/2;
+        lblDown.setText(Functions.toMoney(Down+""));
+        lblDeceased.setText(deceased.getString("lname")+", "+deceased.getString("fname")+" "+deceased.getString("mname"));
     }
 
     public void receivePayment(ActionEvent actionEvent) throws SQLException {
@@ -95,7 +101,6 @@ public class ProcessPaymentController {
             lblChange.setVisible(true);
         }else{
             double change =  paid - bill;
-
             lblChange.setText(Functions.toMoney(""+change));
             lbllblChange.setVisible(true);
             lblChange.setVisible(true);

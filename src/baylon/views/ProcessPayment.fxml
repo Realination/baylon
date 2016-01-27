@@ -12,20 +12,38 @@
       <Label fx:id="lblHeader" alignment="CENTER" layoutX="7.0" prefHeight="44.0" prefWidth="606.0" style="-fx-background-color:#333" styleClass="h4,text-white" text="Process Order" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <AnchorPane layoutX="14.0" layoutY="46.0" prefHeight="410.0" prefWidth="566.0" style="-fx-opacity:0.8;-fx-background-color:rgba(246, 109, 181, 0.7);-fx-background-radius: 3,2,1;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0">
          <children>
+            <Label layoutX="13.0" layoutY="164.0" prefHeight="75.0" prefWidth="271.0" styleClass="h3" text="Required Downpayment:" />
             <Label layoutX="27.0" layoutY="21.0" prefHeight="22.0" prefWidth="120.0" styleClass="h4,text-white" text="Customer:" textFill="WHITE" />
-            <Label fx:id="lblCustomer" layoutX="137.0" layoutY="21.0" prefHeight="22.0" prefWidth="120.0" styleClass="h4" text="Customer:" textFill="WHITE" />
+            <Label fx:id="lblCustomer" layoutX="137.0" layoutY="21.0" prefHeight="47.0" prefWidth="431.0" styleClass="h4" text="Customer:" textFill="WHITE" />
              <Label layoutX="27.0" layoutY="51.0" prefHeight="22.0" prefWidth="120.0" styleClass="h4,text-white" text="Order Type:" textFill="WHITE" />
-             <Label fx:id="lblOrderType" layoutX="137.0" layoutY="51.0" prefHeight="22.0" prefWidth="120.0" styleClass="h4" text="Customer:" textFill="WHITE" />
+             <Label fx:id="lblOrderType" layoutX="137.0" layoutY="51.0" prefHeight="47.0" prefWidth="309.0" styleClass="h4" text="Customer:" textFill="WHITE" />
             <Label layoutX="239.0" layoutY="51.0" prefHeight="41.0" prefWidth="146.0" styleClass="h4,text-white" text="Processed by:" textFill="WHITE" AnchorPane.rightAnchor="181.0" AnchorPane.topAnchor="51.0" />
             <Label layoutX="239.0" layoutY="21.0" prefHeight="41.0" prefWidth="146.0" styleClass="h4,text-white" text="Date Ordered:" textFill="WHITE" AnchorPane.rightAnchor="181.0" AnchorPane.topAnchor="21.0" />
             <Label fx:id="lblDateOrdered" layoutX="365.0" layoutY="21.0" prefHeight="41.0" prefWidth="196.0" styleClass="h4" text="Customer:" textFill="WHITE" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="21.0" />
             <Label fx:id="lblSecretary" layoutX="367.0" layoutY="51.0" prefHeight="41.0" prefWidth="207.0" styleClass="h4" text="Customer:" textFill="WHITE" AnchorPane.rightAnchor="-8.0" AnchorPane.topAnchor="51.0" />
-            <Label layoutX="14.0" layoutY="91.0" prefHeight="66.0" prefWidth="56.0" styleClass="h2" text="Bill:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="91.0" />
-            <Label fx:id="lblBill" layoutX="70.0" layoutY="86.0" styleClass="h1,text-white" text="Label" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="86.0" />
+            <Label layoutX="13.0" layoutY="132.0" prefHeight="75.0" prefWidth="132.0" styleClass="h4" text="Total Bill:" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="132.0" />
+            <Label fx:id="lblBill" layoutX="89.0" layoutY="145.0" prefHeight="47.0" prefWidth="466.0" text="Label" AnchorPane.leftAnchor="89.0" AnchorPane.topAnchor="145.0">
+               <styleClass>
+                  <String fx:value="h4" />
+                  <String fx:value="text-white" />
+               </styleClass></Label>
             <Button fx:id="btnPay" alignment="CENTER" layoutX="144.0" layoutY="296.0" mnemonicParsing="false" onAction="#receivePayment" prefHeight="44.0" prefWidth="297.0" styleClass="btn-primary" text="Receive Payment" AnchorPane.leftAnchor="144.0" AnchorPane.rightAnchor="144.0" />
             <TextField fx:id="txtPaid" alignment="CENTER" layoutX="144.0" layoutY="238.0" prefHeight="51.0" prefWidth="297.0" promptText="Enter Amout Received" AnchorPane.leftAnchor="144.0" AnchorPane.rightAnchor="144.0" />
             <Label fx:id="lbllblChange" layoutX="14.0" layoutY="150.0" prefHeight="66.0" prefWidth="146.0" styleClass="h2" text="Change:" visible="false" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="150.0" />
             <Label fx:id="lblChange" layoutX="137.0" layoutY="146.0" styleClass="h1,text-white" text="Label" visible="false" AnchorPane.leftAnchor="137.0" AnchorPane.topAnchor="146.0" />
+            <Label fx:id="lblDown" layoutX="276.0" layoutY="169.0" prefHeight="65.0" prefWidth="278.0" text="Label">
+               <styleClass>
+                  <String fx:value="h3" />
+                  <String fx:value="text-white" />
+               </styleClass>
+            </Label>
+            <Label fx:id="lblDeceased" layoutX="97.0" layoutY="104.0" prefHeight="47.0" prefWidth="207.0" text="Label" AnchorPane.leftAnchor="97.0" AnchorPane.topAnchor="104.0">
+               <styleClass>
+                  <String fx:value="h4" />
+                  <String fx:value="text-white" />
+               </styleClass>
+            </Label>
+            <Label layoutX="14.0" layoutY="90.0" prefHeight="75.0" prefWidth="146.0" styleClass="h4" text="Deceased:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="90.0" />
          </children></AnchorPane>
    </children>
     <stylesheets>

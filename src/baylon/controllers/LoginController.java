@@ -103,11 +103,12 @@ public class LoginController implements Initializable {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/baylon/views/Dashboard.fxml"));
                 Parent root = fxmlLoader.load();
                 Stage stage = (Stage) btnlogin.getScene().getWindow();
+                stage.close();
                 stage.setScene(new Scene(root));
                 stage.setWidth(Screen.getMainScreen().getWidth());
                 stage.setHeight(Screen.getMainScreen().getHeight());
                 stage.setMaximized(true);
-                stage.setFullScreen(true);
+//                stage.setFullScreen(true);
                 stage.show();
     }
     

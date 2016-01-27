@@ -49,8 +49,8 @@ public class Synch extends TimerTask{
             checkAdd("custpack");
             checkEdit("custpack");
 //            //deceased
-//            checkAdd("deceased");
-//            checkEdit("deceased");
+            checkAdd("payments");
+            checkEdit("payments");
             //packages
 //            checkAdd("packages");
 //            checkEdit("packages");
@@ -100,8 +100,10 @@ public class Synch extends TimerTask{
             System.out.println(response);
             if (!response.trim().equalsIgnoreCase("[]")) {
                 try {
-                    addToDb(table, response);
-                    System.out.println("addtodb");
+                    if(!response.equalsIgnoreCase("error")) {
+                        addToDb(table, response);
+                    }
+                    System.out.println("addtodb"+"-"+response);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -143,7 +145,7 @@ public class Synch extends TimerTask{
                 System.out.println(s);
             }
         }catch (Exception e){
-//            e.printStackTrace();
+            e.printStackTrace();
         }
 
 
@@ -181,7 +183,7 @@ public class Synch extends TimerTask{
         }
 
         }catch (Exception e){
-//            e.printStackTrace();
+            e.printStackTrace();
         }
     }
 }

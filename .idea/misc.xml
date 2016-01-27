@@ -31,7 +31,7 @@
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
-  <component name="IdProvider" IDEtalkID="801C0367D8B0C9F4672A06AC479B9C0D" />
+  <component name="IdProvider" IDEtalkID="2BFDA09380C481D0D37F12941EF6AEEA" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
@@ -62,9 +62,6 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="options.lastSelected" value="preferences.JavaFX" />
-    <property name="options.splitter.main.proportions" value="0.32" />
-    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -168,7 +165,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.51609194" />
+                <option value="0.2" />
               </list>
             </option>
           </splitter-proportions>

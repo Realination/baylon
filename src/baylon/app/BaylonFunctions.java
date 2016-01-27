@@ -60,10 +60,14 @@ public class BaylonFunctions {
 
     public boolean SyncAdd(ArrayList<NameValuePair> data,String table,String id) throws URISyntaxException, HttpException {
         data.add(new BasicNameValuePair("offline_id",id));
-        if(http.ServicePost("SyncUp.php?table="+table,data).equalsIgnoreCase("error")){
+        try {
+            if (http.ServicePost("SyncUp.php?table=" + table, data).equalsIgnoreCase("error")) {
+                return false;
+            } else {
+                return true;
+            }
+        }catch (Exception e){
             return false;
-        }else{
-            return true;
         }
     }
 

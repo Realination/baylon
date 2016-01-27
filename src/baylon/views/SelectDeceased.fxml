@@ -9,7 +9,7 @@
 <AnchorPane prefHeight="476.0" prefWidth="679.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baylon.controllers.SelectDeceasedController">
     <children>
         <Label fx:id="lblHeader" alignment="CENTER" layoutX="7.0" prefHeight="44.0" prefWidth="606.0" style="-fx-background-color:#333" styleClass="h4,text-white" text="Select Deceased" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-        <SplitPane fx:id="customerSplitPane" dividerPositions="1.0" layoutX="7.0" layoutY="48.0" prefHeight="432.0" prefWidth="117.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="44.0">
+        <SplitPane fx:id="deceasedSplitPane" dividerPositions="1.0" layoutX="7.0" layoutY="48.0" prefHeight="432.0" prefWidth="117.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="44.0">
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="430.0" prefWidth="355.0" styleClass="root">
                     <children>
@@ -24,9 +24,9 @@
                     </children>
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="430.0" prefWidth="448.0" styleClass="root">
-                    <children>
-
-                    </children></AnchorPane>
+               <children>
+                  <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToExisting" styleClass="btn-primary" text="Deceased List" />
+               </children></AnchorPane>
             </items>
         </SplitPane>
     </children>

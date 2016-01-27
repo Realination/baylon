@@ -1,7 +1,11 @@
 package baylon.controllers;
 
 
+import baylon.app.BaylonFunctions;
+import baylon.app.Functions;
 import baylon.app.TableHelper;
+import baylon.models.Customers;
+import baylon.models.Deceased;
 import baylon.models.Orders;
 import com.sun.glass.ui.Screen;
 import javafx.collections.FXCollections;
@@ -40,12 +44,13 @@ public class PendingOrdersController {
     Orders tblorders = new Orders();
     ResultSet orders;
      ObservableList<ObservableList> data;
+    Functions funcs = new Functions();
 
 
     public void initialize() throws SQLException {
 
 
-        populateTable("online",PendingOnlineOrdersTable);
+        populateTable("Online",PendingOnlineOrdersTable);
         populateTable("Walk-In",PendingOfflineOrdersTable);
 
 
@@ -112,23 +117,42 @@ public class PendingOrdersController {
 
     private void populateTable(String type,TableView tbl) throws SQLException {
         ArrayList<NameValuePair> nvp = new ArrayList<NameValuePair>();
-        nvp.add(new BasicNameValuePair("status","Pending"));
+        nvp.add(new BasicNameValuePair("status","Transfered"));
         nvp.add(new BasicNameValuePair("order_type",type));
         orders = tblorders.get(nvp);
         data = FXCollections.observableArrayList();
 
         ArrayList<String> cols = new ArrayList<String>();
-        ArrayList rows = new ArrayList();
         cols.add("Order Code");
-        rows.add("ordercode");
+        cols.add("Customer");
+        cols.add("Deceased");
+        cols.add("Payment Method");
         cols.add("Date/Time Ordered");
-        rows.add("created_at");
         cols.add("Bill");
-        rows.add("price");
-
 
         TableHelper.setColumns(cols, tbl);
-        TableHelper.populateTable(rows, orders, tbl);
+
+        ObservableList data = FXCollections.observableArrayList();
+        orders.beforeFirst();
+        while (orders.next()){
+            Customers tblcustomer = new Customers();
+            ResultSet customers = tblcustomer.get(orders.getString("customer")+"");
+            customers.first();
+            Deceased tbldeceased = new Deceased();
+            ResultSet deceased = tbldeceased.get(orders.getString("deceased")+"");
+            deceased.first();
+
+            ObservableList row = FXCollections.observableArrayList();
+            row.add(orders.getString("ordercode")+"");
+            row.add(customers.getString("lastname")+", "+customers.getString("firstname")+" "+customers.getString("middlename")+"");
+            row.add(deceased.getString("lname")+", "+deceased.getString("fname")+" "+deceased.getString("mname")+"");
+            row.add(orders.getString("payment_method")+"");
+            row.add(orders.getString("created_at")+"");
+            row.add(funcs.toMoney(orders.getString("price")+""));
+            data.add(row);
+        }
+        System.out.println(data);
+         tbl.setItems(data);
     }
 
 
@@ -136,7 +160,7 @@ public class PendingOrdersController {
 
     private void processOrder(int index,String type) throws SQLException, IOException {
         ArrayList<NameValuePair> nvp = new ArrayList<NameValuePair>();
-        nvp.add(new BasicNameValuePair("status","Pending"));
+        nvp.add(new BasicNameValuePair("status","Transfered"));
         nvp.add(new BasicNameValuePair("order_type",type));
         ResultSet ords  = tblorders.get(nvp);
         ords.first();
