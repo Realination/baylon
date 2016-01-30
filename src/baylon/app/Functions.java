@@ -1,8 +1,22 @@
 package baylon.app;
 
+import com.sun.glass.ui.Screen;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.text.NumberFormat;
-import java.util.Locale;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by troll173 on 11/27/15.
@@ -46,5 +60,62 @@ public class Functions {
         return retString;
     }
 
+
+    public static void openScene(FXMLLoader fxmlLoader,Stage stage,String title,Boolean fullscreen,Boolean maximized){
+        Parent root = null;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        stage.setScene(new Scene(root));
+        stage.setWidth(Screen.getMainScreen().getWidth());
+        stage.setHeight(Screen.getMainScreen().getHeight());
+        stage.setMaximized(maximized);
+        stage.setFullScreen(fullscreen);
+        stage.setTitle(title);
+
+        stage.show();
+    }
+
+
+    public static void dataTable(TableView table,ObservableList data,String searchPrompt,Boolean clickable){
+        TextField txtSearch = new TextField();
+        txtSearch.setPromptText(searchPrompt);
+        txtSearch.setPrefWidth(200);
+
+        AnchorPane parent = (AnchorPane)table.getParent();
+
+        Double x = table.getLayoutX();
+        Double y = table.getLayoutY();
+        Double leftDistance = (Screen.getMainScreen().getWidth() - table.getLayoutX() * 2) - txtSearch.getPrefWidth();
+        txtSearch.setLayoutX(leftDistance + table.getWidth());
+        txtSearch.setLayoutY(y - 40);
+        txtSearch.setVisible(true);
+        parent.getChildren().add(txtSearch);
+
+        ObservableList oldData = data;
+        table.setItems(oldData);
+        txtSearch.textProperty().addListener(new ChangeListener<String>() {
+            public void changed(final ObservableValue<? extends String> observable, final String oldValue, final String newValue) {
+                ObservableList newData = FXCollections.observableArrayList();
+                for(Object datum: oldData){
+
+                    if(datum.toString().toUpperCase().contains(newValue.toUpperCase())){
+                        newData.addAll(datum);
+                    }
+                }
+                System.out.println(oldData + " ="+newValue);
+                table.setItems(newData);
+
+            }
+        });
+
+
+
+
+
+
+    }
 
 }

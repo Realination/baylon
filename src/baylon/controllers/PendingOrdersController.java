@@ -20,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TouchEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
@@ -183,6 +184,17 @@ public class PendingOrdersController {
 //        stage.initStyle(StageStyle.UNDECORATED);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent event) {
+                System.out.println("payment closed!");
+                try {
+                    initialize();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
 
 
     }

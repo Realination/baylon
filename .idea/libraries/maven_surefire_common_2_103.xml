@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="maven-surefire-common-2.10">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/repository/org/apache/maven/surefire/maven-surefire-common/2.10/maven-surefire-common-2.10.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

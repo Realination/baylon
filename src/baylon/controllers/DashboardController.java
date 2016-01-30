@@ -149,6 +149,20 @@ public class DashboardController implements Initializable {
         OpenPage("/baylon/views/PendingOrders.fxml");
     }
 
+
+    @FXML
+    public void currentWakes(){
+        leftSplitPaneDividerSlider.setAimContentVisible(false);
+        OpenPage("/baylon/views/CurrentWakes.fxml");
+    }
+
+    @FXML
+    public void DeceasedList()
+    {
+        leftSplitPaneDividerSlider.setAimContentVisible(false);
+        OpenPage("/baylon/views/DeceasedList.fxml");
+    }
+
     @FXML
     public void OpenPage(String FXMLFile) {
 

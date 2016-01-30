@@ -3,8 +3,8 @@ package baylon.controllers;
 
 import baylon.app.BaylonFunctions;
 import baylon.app.Constants;
+import baylon.app.DataTable;
 import baylon.app.Functions;
-import baylon.app.TableHelper;
 import baylon.models.Orders;
 import baylon.models.Packages;
 import baylon.models.Services;
@@ -59,8 +59,9 @@ public class ViewPackageController {
     Stage myStage;
     String newServices =  "";
     BaylonFunctions funcs = new BaylonFunctions();
+    DataTable dataTable;
     public void initialize() {
-
+        dataTable = new DataTable(tblServices);
     }
 
     public void reload() throws SQLException {
@@ -219,8 +220,7 @@ public class ViewPackageController {
         cols.add("Qty");
         cols.add("Changes");
         cols.add("Type");
-
-        TableHelper.setColumns(cols,tblServices);
+        dataTable.setColumns(cols);
     }
 
 
@@ -260,7 +260,7 @@ public class ViewPackageController {
 
             data.add(row);
         }
-        tblServices.setItems(data);
+        dataTable.init(data,"Search Service",true);
     }
 
 

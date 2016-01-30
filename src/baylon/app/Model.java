@@ -7,10 +7,7 @@ package baylon.app;
 
 import org.apache.http.NameValuePair;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 /**
@@ -186,6 +183,39 @@ public abstract class Model {
         }
         return result;
      }
+
+
+
+    public Double getSum(ArrayList<NameValuePair> data,String field){
+        ResultSet result = null;
+        String where="";
+        Double total = 0.0;
+
+        int i=0;
+        for (NameValuePair datum : data) {
+            where += " `"+datum.getName()+"` LIKE '"+datum.getValue()+"'";
+            if(data.size()-1 > i){
+                where += " AND";
+            }
+            i++;
+        }
+
+        Connection conn;
+        try{
+            conn = DBConnection.getConnection();
+            Statement stmt = conn.createStatement();
+            String sql = "SELECT SUM("+field+") as total FROM `"+tblName()+"` WHERE "+where;
+            result = stmt.executeQuery(sql);
+            System.out.println(sql);
+            result.first();
+            total = result.getDouble("total");
+        }catch(Exception e){
+            e.printStackTrace();
+            System.out.println("Error");
+        }
+
+        return total;
+    }
 
     public ResultSet getNot(ArrayList<NameValuePair> data){
         ResultSet result = null;

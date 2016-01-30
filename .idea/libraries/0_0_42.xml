@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="0.0.4">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/repository/de/dimaki/refuel/0.0.4/refuel-0.0.4-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/repository/de/dimaki/refuel/0.0.4/refuel-0.0.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

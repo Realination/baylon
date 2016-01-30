@@ -2,12 +2,11 @@ package baylon.controllers;
 
 
 import baylon.app.Constants;
+import baylon.app.DataTable;
+import baylon.app.Form;
 import baylon.app.TableHelper;
 import baylon.models.Customers;
 import baylon.models.Orders;
-import com.github.sarxos.webcam.Webcam;
-import com.github.sarxos.webcam.WebcamPanel;
-import com.github.sarxos.webcam.WebcamResolution;
 import com.sun.glass.ui.Screen;
 import de.jensd.shichimifx.utils.SplitPaneDividerSlider;
 import javafx.collections.FXCollections;
@@ -18,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
@@ -26,10 +26,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-import org.omg.CORBA.NameValuePair;
 
-import javax.swing.*;
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -47,17 +47,25 @@ public class SelectCustomerController {
     @FXML
     TableView tableCustomers;
     @FXML
-    ComboBox comboMarital,comboProvince,comboRegion,comboMunicipality,comboGender;
+    AnchorPane imageAnchor,customerRegForm;
     @FXML
-    AnchorPane imageAnchor;
+    Label lblError;
+    @FXML
+    ComboBox region,province,municipality,marital;
 
     public static SplitPaneDividerSlider leftSplitPaneDividerSlider;
     Customers tblcustomers = new Customers();
     Orders tblorders = new Orders();
     ResultSet customers;
     Constants constants;
+    DataTable dataTable;
+    Form frmCustomer;
 
     public void initialize() throws SQLException {
+        dataTable = new DataTable(tableCustomers);
+        frmCustomer = new Form(customerRegForm);
+        frmCustomer.setAsErrorDisplay(lblError);
+
         leftSplitPaneDividerSlider = new SplitPaneDividerSlider(customerSplitPane, 0, SplitPaneDividerSlider.Direction.LEFT);
         customerSplitPane.setMinWidth(com.sun.glass.ui.Screen.getMainScreen().getWidth());
         customerSplitPane.setMinWidth(com.sun.glass.ui.Screen.getMainScreen().getWidth());
@@ -65,10 +73,16 @@ public class SelectCustomerController {
         constants = Constants.getInstance();
 
         ObservableList<String> maritalStats = FXCollections.observableArrayList("Single", "Married", "Widow/Widower");
-        comboMarital.setItems(maritalStats);
-        ObservableList<String> gender = FXCollections.observableArrayList("Male", "Female");
-        comboGender.setItems(gender);
+        marital.setItems(maritalStats);
 
+        ObservableList<String> regions = FXCollections.observableArrayList("Region IV", "Region V", "Region VI");
+        region.setItems(regions);
+
+        ObservableList<String> provinces = FXCollections.observableArrayList("Iloilo");
+        province.setItems(provinces);
+
+        ObservableList<String> municipalities = FXCollections.observableArrayList("Leganes","Pototan");
+        municipality.setItems(municipalities);
 
         customers = tblcustomers.get();
         customers.first();
@@ -79,7 +93,7 @@ public class SelectCustomerController {
         cols.add("Address");
         cols.add("Citizenship");
 
-        TableHelper.setColumns(cols,tableCustomers);
+        dataTable.setColumns(cols);
         ObservableList data = FXCollections.observableArrayList();
 
         while(customers.next()){
@@ -95,7 +109,7 @@ public class SelectCustomerController {
             data.add(row);
 
         }
-        tableCustomers.getItems().setAll(data);
+        dataTable.init(data,"Search Customer",true);
 
         tableCustomers.setOnMousePressed(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
@@ -121,7 +135,7 @@ public class SelectCustomerController {
             }
             String custId = customers.getString("id");
             constants.addValue("customer_id",custId);
-            ArrayList<org.apache.http.NameValuePair> nvp = new ArrayList<org.apache.http.NameValuePair>();
+            ArrayList<NameValuePair> nvp = new ArrayList<NameValuePair>();
             nvp.add(new BasicNameValuePair("customer",custId));
             tblorders.save(nvp,constants.getValue("orderid"));
         } catch (SQLException e) {
@@ -163,30 +177,15 @@ public class SelectCustomerController {
 
     @FXML
     void registerCustomer(){
-        if(validateInput()){
-
-        }
+      ArrayList<NameValuePair> nvp = frmCustomer.getData();
+      System.out.println(nvp);
+        tblcustomers.save(nvp);
     }
 
 
     @FXML
     void takePhoto(){
-        Webcam webcam = Webcam.getDefault();
-        webcam.setViewSize(WebcamResolution.VGA.getSize());
-
-        WebcamPanel panel = new WebcamPanel(webcam);
-        panel.setFPSDisplayed(true);
-        panel.setDisplayDebugInfo(true);
-        panel.setImageSizeDisplayed(true);
-        panel.setMirrored(true);
-
-
-        JFrame window = new JFrame("Take Picture");
-        window.add(panel);
-        window.setResizable(false);
-        window.pack();
-        window.setVisible(true);
-
+     
 
     }
 

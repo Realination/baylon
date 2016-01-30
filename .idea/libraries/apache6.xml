@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="apache">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/apache/apache-httpcomponents-httpclient.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/apache/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/apache/apache-httpcomponents-httpclient.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/apache/org-apache-commons-codec.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/apache/apache-httpcomponents-httpcore.jar!/" />
     </CLASSES>

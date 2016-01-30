@@ -101,7 +101,7 @@ public class AddServiceController {
             }
         });
 
-        tblServices.setOnTouchPressed(new EventHandler<TouchEvent>() {
+    tblServices.setOnTouchPressed(new EventHandler<TouchEvent>() {
             public void handle(TouchEvent event) {
                 try {
                     selectService(tblServices.getSelectionModel().getSelectedIndex());

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 
-<AnchorPane fx:id="dashboardPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="363.0" prefWidth="600.0" style="-fx-background-radius: 8,7,6;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baylon.controllers.DashboardController">
+<AnchorPane fx:id="dashboardPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="363.0" prefWidth="600.0" style="-fx-background-radius: 8,7,6;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baylon.controllers.DashboardController">
    <children>
       <SplitPane fx:id="dashoardSplit" dividerPositions="0.9933110367892977" layoutX="-3.0" layoutY="6.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="314.0" prefWidth="600.0" styleClass="root" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
@@ -36,12 +36,12 @@
                         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="112.0" prefWidth="208.0" styleClass="mmenu" text="Button" GridPane.columnIndex="2" />
                         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="112.0" prefWidth="208.0" styleClass="mmenu" text="Button" GridPane.columnIndex="3" />
                         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#pendingOrders" prefHeight="112.0" prefWidth="208.0" styleClass="mmenu" text="Pending Orders" GridPane.rowIndex="1" />
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="112.0" prefWidth="208.0" styleClass="mmenu" text="Current Wakes" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#currentWakes" prefHeight="112.0" prefWidth="208.0" styleClass="mmenu" text="Current Wakes" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="107.0" prefWidth="153.0" styleClass="mmenu" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#userMaintenance" prefHeight="112.0" prefWidth="208.0" styleClass="mmenu" text="Users Maintenance" GridPane.rowIndex="2" />
                         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#personelMaintenance" prefHeight="112.0" prefWidth="208.0" styleClass="mmenu" text="Personel Maintenance" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="112.0" prefWidth="208.0" styleClass="mmenu" text="Package Maintenance" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="86.0" prefWidth="117.0" styleClass="mmenu" text="Deceased List" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#DeceasedList" prefHeight="86.0" prefWidth="117.0" styleClass="mmenu" text="Deceased List" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                         <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="208.0" prefWidth="232.0" styleClass="mmenu" text="Services Maintenance" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>

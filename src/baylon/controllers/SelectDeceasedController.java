@@ -1,6 +1,7 @@
 package baylon.controllers;
 
 import baylon.app.Constants;
+import baylon.app.DataTable;
 import baylon.app.TableHelper;
 import baylon.models.Deceased;
 import baylon.models.Orders;
@@ -41,11 +42,13 @@ public class SelectDeceasedController {
     @FXML
     SplitPane deceasedSplitPane;
     Constants constants;
+    DataTable dataTable;
 
     public static SplitPaneDividerSlider leftSplitPaneDividerSlider;
 
     public void initialize() throws SQLException {
         constants = Constants.getInstance();
+        dataTable = new DataTable(tableDeceased);
         System.out.println("Init");
         deceased = tbldeceased.get();
         deceased.first();
@@ -63,7 +66,7 @@ public class SelectDeceasedController {
         cols.add("Weight");
         cols.add("Date of Death");
         cols.add("Cause of Death");
-        TableHelper.setColumns(cols,tableDeceased);
+        dataTable.setColumns(cols);
 
         ObservableList data = FXCollections.observableArrayList();
 
@@ -78,7 +81,7 @@ public class SelectDeceasedController {
             row.add(deceased.getString("cause_of_death")+" ");
             data.add(row);
         }
-        tableDeceased.getItems().setAll(data);
+        dataTable.init(data,"Search Deceased",true);
 
         tableDeceased.setOnMousePressed(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
@@ -169,9 +172,10 @@ public class SelectDeceasedController {
 
         controller.initialize(deceasedId);
 
-        stage.setWidth(Screen.getMainScreen().getWidth() * 0.70);
-        stage.setHeight(Screen.getMainScreen().getHeight() * 0.70);
-        stage.setMaximized(true);
+        stage.setWidth(Screen.getMainScreen().getWidth() * 0.55);
+        stage.setHeight(Screen.getMainScreen().getHeight() * 0.65);
+        //stage.setMaximized(true);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("Baylon | View Deceased");
         stage.show();

@@ -14,7 +14,19 @@ import baylon.app.Model;
 public class Packages extends Model{
     private static String tblName = "packages";
     private static String primaryKey = "id";
+    private static Packages instance;
 
+    public static Packages getInstance() {
+        if (instance == null) {
+            synchronized (Packages.class) {
+                if (instance == null) {
+                    instance = new Packages();
+
+                }
+            }
+        }
+        return instance;
+    }
     @Override
     public String tblName() {
        return tblName;

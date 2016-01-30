@@ -14,7 +14,19 @@ import baylon.app.Model;
 public class Suboptions extends Model{
     private static String tblName = "sub_options";
     private static String primaryKey = "id";
+    private static Suboptions instance;
 
+    public static Suboptions getInstance() {
+        if (instance == null) {
+            synchronized (Suboptions.class) {
+                if (instance == null) {
+                    instance = new Suboptions();
+
+                }
+            }
+        }
+        return instance;
+    }
     @Override
     public String tblName() {
        return tblName;

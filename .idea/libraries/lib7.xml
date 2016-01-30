@@ -1,17 +1,10 @@
 <component name="libraryTable">
   <library name="lib">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/org-apache-commons-codec.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/apache-httpcomponents-httpclient.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/reactfx-2.0-20151122.175408-45.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/apache-httpcomponents-httpcore.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/commons-logging-1.2.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/mysql-connector-java-5.1.23-bin.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/fontawesomefx-8.0.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/org.json-20120521.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/json_simple-1.1.jar!/" />
+      <root url="file://$PROJECT_DIR$/lib" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/lib" recursive="false" />
   </library>
 </component>

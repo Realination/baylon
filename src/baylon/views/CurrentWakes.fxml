@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="476.0" prefWidth="606.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baylon.controllers.CurrentWakes">
+    <children>
+        <Label fx:id="lblHeader" alignment="CENTER" layoutY="58.0" prefHeight="44.0" prefWidth="606.0" styleClass="h4" text="Current Wakes" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="58.0" />
+      <TableView fx:id="tableWakes" layoutX="14.0" layoutY="171.0" prefHeight="279.0" prefWidth="566.0" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="171.0">
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+
+
+    </children>
+    <stylesheets>
+        <URL value="@css/fextile.css" />
+    </stylesheets>
+</AnchorPane>

@@ -14,7 +14,19 @@ import baylon.app.Model;
 public class Services extends Model{
     private static String tblName = "services";
     private static String primaryKey = "id";
+    private static Services instance;
 
+    public static Services getInstance() {
+        if (instance == null) {
+            synchronized (Services.class) {
+                if (instance == null) {
+                    instance = new Services();
+
+                }
+            }
+        }
+        return instance;
+    }
     @Override
     public String tblName() {
        return tblName;

@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
+<?import java.net.URL?>
 
-<AnchorPane prefHeight="590.0" prefWidth="1008.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baylon.controllers.SelectCustomerController">
+<AnchorPane prefHeight="590.0" prefWidth="1008.0" styleClass="root" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baylon.controllers.SelectCustomerController">
     <children>
         <Label fx:id="lblHeader" alignment="CENTER" layoutX="7.0" prefHeight="44.0" prefWidth="606.0" style="-fx-background-color:#333" styleClass="h4,text-white" text="Select Customer" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <SplitPane fx:id="customerSplitPane" dividerPositions="1.0" layoutX="7.0" layoutY="48.0" prefHeight="432.0" prefWidth="117.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="44.0">
+      <SplitPane fx:id="customerSplitPane" dividerPositions="0.0" layoutX="7.0" layoutY="48.0" prefHeight="432.0" prefWidth="117.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="44.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="430.0" prefWidth="355.0" styleClass="root">
                <children>
@@ -27,39 +26,34 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="430.0" prefWidth="448.0" styleClass="root">
                <children>
                   <Button layoutX="14.0" layoutY="8.0" mnemonicParsing="false" onAction="#switchToExisting" styleClass="btn-primary" text="Existing Customer" />
-                  <AnchorPane layoutX="37.0" layoutY="83.0" prefHeight="436.0" prefWidth="682.0" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="82.0">
+                  <AnchorPane fx:id="customerRegForm" layoutX="37.0" layoutY="83.0" prefHeight="436.0" prefWidth="682.0" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="82.0">
                      <children>
                         <Label layoutX="20.0" layoutY="-3.0" styleClass="h5" text="Customer Name:" />
-                        <TextField fx:id="txtCitizenship" layoutX="479.0" layoutY="255.0" prefHeight="30.0" prefWidth="192.0" promptText="Citizenship" AnchorPane.leftAnchor="479.0" />
-                        <TextField fx:id="txtZip" layoutX="251.0" layoutY="146.0" prefHeight="30.0" prefWidth="192.0" promptText="Zipcode" AnchorPane.leftAnchor="251.0" />
-                        <ComboBox fx:id="comboGender" layoutX="313.0" layoutY="255.0" prefHeight="30.0" prefWidth="130.0" promptText="Gender" AnchorPane.leftAnchor="313.0" />
-                        <TextField layoutX="479.0" layoutY="201.0" prefHeight="30.0" prefWidth="192.0" promptText="TIN Number" AnchorPane.leftAnchor="479.0" />
-                        <DatePicker fx:id="dateBirth" layoutX="19.0" layoutY="255.0" prefHeight="30.0" prefWidth="192.0" promptText="mm/dd/yy" AnchorPane.leftAnchor="19.0" />
-                        <TextField fx:id="txtAge" layoutX="251.0" layoutY="255.0" prefHeight="30.0" prefWidth="54.0" promptText="Age" AnchorPane.leftAnchor="251.0" />
-                        <TextField fx:id="txtHome" layoutX="19.0" layoutY="146.0" prefHeight="30.0" prefWidth="192.0" promptText="Home Address" AnchorPane.leftAnchor="19.0" />
-                        <ComboBox fx:id="comboProvince" layoutX="19.0" layoutY="201.0" prefHeight="30.0" prefWidth="192.0" promptText="Province" AnchorPane.leftAnchor="19.0" />
-                        <TextField fx:id="txtLandline" layoutX="16.0" layoutY="85.0" prefHeight="30.0" prefWidth="192.0" promptText="Landline Number" AnchorPane.leftAnchor="16.0" />
-                        <TextField fx:id="txtEmail" layoutX="479.0" layoutY="85.0" prefHeight="30.0" prefWidth="192.0" promptText="Email " AnchorPane.leftAnchor="479.0" />
-                        <ComboBox fx:id="comboRegion" layoutX="479.0" layoutY="146.0" prefHeight="30.0" prefWidth="192.0" promptText="Region" AnchorPane.leftAnchor="479.0" />
-                        <TextField fx:id="txtFname" layoutX="16.0" layoutY="26.0" prefHeight="30.0" prefWidth="192.0" promptText="First Name" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="26.0" />
-                        <TextField fx:id="txtMobile" layoutX="251.0" layoutY="85.0" prefHeight="30.0" prefWidth="192.0" promptText="Mobile Number" AnchorPane.leftAnchor="251.0" />
-                        <TextField fx:id="txtCompany" layoutX="248.0" layoutY="312.0" prefHeight="30.0" prefWidth="424.0" promptText="Company" AnchorPane.leftAnchor="248.0" />
-                        <TextField fx:id="txtMname" layoutX="251.0" layoutY="26.0" prefHeight="30.0" prefWidth="192.0" promptText="Middle Name" AnchorPane.leftAnchor="251.0" AnchorPane.topAnchor="26.0" />
-                        <ComboBox fx:id="comboMunicipality" layoutX="251.0" layoutY="201.0" prefHeight="30.0" prefWidth="192.0" promptText="Municipality" AnchorPane.leftAnchor="251.0" />
-                        <TextField fx:id="txtLname" layoutX="479.0" layoutY="26.0" prefHeight="30.0" prefWidth="192.0" promptText="Last Name" AnchorPane.leftAnchor="479.0" AnchorPane.topAnchor="26.0" />
+                        <TextField id="citizenship" layoutX="479.0" layoutY="255.0" prefHeight="30.0" prefWidth="192.0" promptText="Citizenship" AnchorPane.leftAnchor="479.0" />
+                        <TextField id="tin" layoutX="479.0" layoutY="201.0" prefHeight="30.0" prefWidth="192.0" promptText="TIN Number" AnchorPane.leftAnchor="479.0" />
+                        <TextField fx:id="age" layoutX="251.0" layoutY="255.0" prefHeight="30.0" prefWidth="54.0" promptText="Age" AnchorPane.leftAnchor="251.0" />
+                        <TextField id="address" layoutX="19.0" layoutY="146.0" prefHeight="30.0" prefWidth="192.0" promptText="Home Address" AnchorPane.leftAnchor="19.0" />
+                        <ComboBox id="province" fx:id="province" layoutX="19.0" layoutY="201.0" prefHeight="30.0" prefWidth="192.0" promptText="Province" AnchorPane.leftAnchor="19.0" />
+                        <TextField fx:id="landline" layoutX="16.0" layoutY="85.0" prefHeight="30.0" prefWidth="192.0" promptText="Landline Number" AnchorPane.leftAnchor="16.0" />
+                        <TextField id="email" layoutX="479.0" layoutY="85.0" prefHeight="30.0" prefWidth="192.0" promptText="Email " AnchorPane.leftAnchor="479.0" />
+                        <ComboBox id="region" fx:id="region" layoutX="479.0" layoutY="146.0" prefHeight="30.0" prefWidth="192.0" promptText="Region" AnchorPane.leftAnchor="479.0" />
+                        <TextField id="firstname" layoutX="16.0" layoutY="26.0" prefHeight="30.0" prefWidth="192.0" promptText="First Name" styleClass="required" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="26.0" />
+                        <TextField id="mobile" layoutX="251.0" layoutY="85.0" prefHeight="30.0" prefWidth="192.0" promptText="Mobile Number" AnchorPane.leftAnchor="251.0" />
+                        <TextField fx:id="company" layoutX="248.0" layoutY="312.0" prefHeight="30.0" prefWidth="424.0" promptText="Company" AnchorPane.leftAnchor="248.0" />
+                        <TextField id="middlename" layoutX="251.0" layoutY="26.0" prefHeight="30.0" prefWidth="192.0" promptText="Middle Name" styleClass="required" AnchorPane.leftAnchor="251.0" AnchorPane.topAnchor="26.0" />
+                        <ComboBox id="municipality" fx:id="municipality" layoutX="251.0" layoutY="201.0" prefHeight="30.0" prefWidth="192.0" promptText="Municipality" AnchorPane.leftAnchor="251.0" />
+                        <TextField id="lastname" layoutX="479.0" layoutY="26.0" prefHeight="30.0" prefWidth="192.0" promptText="Last Name" styleClass="required" AnchorPane.leftAnchor="479.0" AnchorPane.topAnchor="26.0" />
                         <Label layoutX="20.0" layoutY="55.0" styleClass="h5" text="Landline #:" />
                         <Label layoutX="248.0" layoutY="55.0" styleClass="h5" text="Mobile #:" />
-                        <ComboBox fx:id="comboMarital" layoutX="20.0" layoutY="312.0" prefHeight="30.0" prefWidth="192.0" promptText="Marital Status" AnchorPane.leftAnchor="20.0" />
+                        <ComboBox id="marital" fx:id="marital" layoutX="20.0" layoutY="312.0" prefHeight="30.0" prefWidth="192.0" promptText="Marital Status" AnchorPane.leftAnchor="20.0" />
                         <Label layoutX="478.0" layoutY="56.0" styleClass="h5" text="Email:" />
                         <Label layoutX="478.0" layoutY="116.0" styleClass="h5" text="Region:" />
-                        <Label layoutX="248.0" layoutY="116.0" styleClass="h5" text="Zip code:" />
                         <Label layoutX="18.0" layoutY="116.0" styleClass="h5" text="Home Address:" />
                         <Label layoutX="18.0" layoutY="170.0" styleClass="h5" text="Province:" />
                         <Label layoutX="248.0" layoutY="170.0" styleClass="h5" text="Municipality:" />
                         <Label layoutX="478.0" layoutY="170.0" styleClass="h5" text="Tin #:" />
                         <Label layoutX="478.0" layoutY="225.0" styleClass="h5" text="Citizenship:" />
                         <Label layoutX="256.0" layoutY="225.0" styleClass="h5" text="Age:" />
-                        <Label layoutX="19.0" layoutY="225.0" styleClass="h5" text="Date  of Birth:" />
                         <Label layoutX="249.0" layoutY="283.0" styleClass="h5" text="Company:" />
                         <Button layoutX="545.0" layoutY="395.0" mnemonicParsing="false" onAction="#registerCustomer" prefHeight="32.0" prefWidth="137.0" styleClass="btn-success" text="Register" />
                      </children>
@@ -74,6 +68,7 @@
                         </VBox>
                         <AnchorPane fx:id="imageAnchor" layoutX="5.0" prefHeight="212.0" prefWidth="264.0" />
                      </children></AnchorPane>
+                  <Label fx:id="lblError" layoutX="200.0" layoutY="17.0" prefHeight="56.0" prefWidth="539.0" style="-fx-font-size: 20;" AnchorPane.leftAnchor="199.0" AnchorPane.rightAnchor="261.0" AnchorPane.topAnchor="17.0" />
                </children></AnchorPane>
         </items>
       </SplitPane>

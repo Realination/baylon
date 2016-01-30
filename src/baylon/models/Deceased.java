@@ -14,7 +14,19 @@ import baylon.app.Model;
 public class Deceased extends Model{
     private static String tblName = "deceased";
     private static String primaryKey = "id";
+    private static Deceased instance;
 
+    public static Deceased getInstance() {
+        if (instance == null) {
+            synchronized (Deceased.class) {
+                if (instance == null) {
+                    instance = new Deceased();
+
+                }
+            }
+        }
+        return instance;
+    }
     @Override
     public String tblName() {
        return tblName;

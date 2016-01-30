@@ -15,6 +15,20 @@ public class Admin extends Model{
     private static String tblName = "admin";
     private static String primaryKey = "id";
 
+    private static Admin instance;
+
+    public static Admin getInstance() {
+        if (instance == null) {
+            synchronized (Admin.class) {
+                if (instance == null) {
+                    instance = new Admin();
+
+                }
+            }
+        }
+        return instance;
+    }
+
     @Override
     public String tblName() {
        return tblName;

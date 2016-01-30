@@ -30,6 +30,7 @@ public class TableHelper {
             });
             col.setPrefWidth(200);
             tbl.getColumns().addAll(col);
+
         }
     }
 
@@ -44,7 +45,7 @@ public class TableHelper {
                 //Iterate Column
              if(record.get(i).getClass().getName().equalsIgnoreCase("java.lang.String")){
                 String me = record.get(i).toString();
-                 row.add(rs.getString(me.trim().toString()));
+                 row.add(rs.getString(me.trim().toString()+""));
              }else{
                  row.add(record.get(i));
              }

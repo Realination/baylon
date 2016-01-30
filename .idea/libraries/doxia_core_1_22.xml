@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="doxia-core-1.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/repository/org/apache/maven/doxia/doxia-core/1.2/doxia-core-1.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

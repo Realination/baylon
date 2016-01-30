@@ -29,8 +29,7 @@
                </styleClass></Label>
             <Button fx:id="btnPay" alignment="CENTER" layoutX="144.0" layoutY="296.0" mnemonicParsing="false" onAction="#receivePayment" prefHeight="44.0" prefWidth="297.0" styleClass="btn-primary" text="Receive Payment" AnchorPane.leftAnchor="144.0" AnchorPane.rightAnchor="144.0" />
             <TextField fx:id="txtPaid" alignment="CENTER" layoutX="144.0" layoutY="238.0" prefHeight="51.0" prefWidth="297.0" promptText="Enter Amout Received" AnchorPane.leftAnchor="144.0" AnchorPane.rightAnchor="144.0" />
-            <Label fx:id="lbllblChange" layoutX="14.0" layoutY="150.0" prefHeight="66.0" prefWidth="146.0" styleClass="h2" text="Change:" visible="false" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="150.0" />
-            <Label fx:id="lblChange" layoutX="137.0" layoutY="146.0" styleClass="h1,text-white" text="Label" visible="false" AnchorPane.leftAnchor="137.0" AnchorPane.topAnchor="146.0" />
+            <Label fx:id="lbllblChange" layoutX="14.0" layoutY="346.0" prefHeight="65.0" prefWidth="146.0" styleClass="h2" text="Change:" visible="false" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="346.0" />
             <Label fx:id="lblDown" layoutX="276.0" layoutY="169.0" prefHeight="65.0" prefWidth="278.0" text="Label">
                <styleClass>
                   <String fx:value="h3" />
@@ -44,6 +43,7 @@
                </styleClass>
             </Label>
             <Label layoutX="14.0" layoutY="90.0" prefHeight="75.0" prefWidth="146.0" styleClass="h4" text="Deceased:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="90.0" />
+            <Label fx:id="lblChange" layoutX="202.0" layoutY="342.0" prefHeight="83.0" prefWidth="369.0" styleClass="h1,text-white" text="Label" visible="false" AnchorPane.leftAnchor="202.0" AnchorPane.topAnchor="342.0" />
          </children></AnchorPane>
    </children>
     <stylesheets>

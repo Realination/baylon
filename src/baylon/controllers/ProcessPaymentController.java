@@ -1,11 +1,9 @@
 package baylon.controllers;
 
 
+import baylon.app.Constants;
 import baylon.app.Functions;
-import baylon.models.Admin;
-import baylon.models.Deceased;
-import baylon.models.Orders;
-import baylon.models.Users;
+import baylon.models.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -38,8 +36,14 @@ public class ProcessPaymentController {
     Users tblusers = new Users();
     Admin tbladmin = new Admin();
     Orders orders = new Orders();
+    Payments tblpayments = new Payments();
     Deceased tbldeceased = new Deceased();
     ResultSet users,admins,deceased;
+
+    Constants constants = Constants.getInstance();
+
+    Double down;
+
     public void initialize() throws SQLException {
 //
 
@@ -86,8 +90,8 @@ public class ProcessPaymentController {
         lblOrderType.setText(record.getString("order_type"));
         lblDateOrdered.setText(record.getString("created_at"));
         lblBill.setText(Functions.toMoney(record.getString("price")));
-        Double Down = record.getDouble("price")/2;
-        lblDown.setText(Functions.toMoney(Down+""));
+        down = record.getDouble("price")/2;
+        lblDown.setText(Functions.toMoney(down+""));
         lblDeceased.setText(deceased.getString("lname")+", "+deceased.getString("fname")+" "+deceased.getString("mname"));
     }
 
@@ -95,7 +99,7 @@ public class ProcessPaymentController {
         System.out.println(txtPaid.getText());
         double paid = Double.parseDouble(txtPaid.getText());
         double bill = Double.parseDouble(record.getString("price"));
-        if(bill > paid){
+        if(down > paid){
             lblChange.setText("Not Enough Payment!!!");
             lbllblChange.setVisible(false);
             lblChange.setVisible(true);
@@ -107,8 +111,24 @@ public class ProcessPaymentController {
             txtPaid.setDisable(true);
             btnPay.setDisable(true);
             ArrayList<NameValuePair> nvp = new ArrayList<NameValuePair>();
-            nvp.add(new BasicNameValuePair("status","Complete"));
+
+            Double amountPaid = 0.0;
+            if(paid >= bill){
+                amountPaid = bill;
+                nvp.add(new BasicNameValuePair("status","Paid"));
+            }else{
+                amountPaid = paid;
+                nvp.add(new BasicNameValuePair("status","Partial"));
+            }
+
             orders.save(nvp,record.getString("id"));
+            nvp.clear();
+
+
+            nvp.add(new BasicNameValuePair("ordercode",record.getString("ordercode")));
+            nvp.add(new BasicNameValuePair("amount",amountPaid+""));
+            tblpayments.save(nvp);
+
         }
 
     }

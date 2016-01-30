@@ -14,7 +14,19 @@ import baylon.app.Model;
 public class Users extends Model{
     private static String tblName = "customers";
     private static String primaryKey = "id";
+    private static Users instance;
 
+    public static Users getInstance() {
+        if (instance == null) {
+            synchronized (Users.class) {
+                if (instance == null) {
+                    instance = new Users();
+
+                }
+            }
+        }
+        return instance;
+    }
     @Override
     public String tblName() {
        return tblName;
