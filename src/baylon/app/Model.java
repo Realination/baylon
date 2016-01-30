@@ -7,7 +7,10 @@ package baylon.app;
 
 import org.apache.http.NameValuePair;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**

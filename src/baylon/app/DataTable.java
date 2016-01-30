@@ -8,7 +8,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
@@ -39,7 +41,7 @@ public class DataTable {
     }
 
 
-    public  void init(ObservableList data,String searchPrompt,boolean hasRecCount) {
+    public void init(ObservableList data,String searchPrompt,boolean hasRecCount) {
 
         this.hasRecordCount = hasRecCount;
 
@@ -54,7 +56,14 @@ public class DataTable {
         Double leftDistance = (Screen.getMainScreen().getWidth() - table.getLayoutX() * 2) - txtSearch.getPrefWidth();
         txtSearch.setLayoutX(leftDistance + table.getWidth());
         txtSearch.setLayoutY(y - 40);
-        txtSearch.setVisible(true);
+
+        if(searchPrompt.equalsIgnoreCase("")){
+            txtSearch.setVisible(false);
+        }else{
+            txtSearch.setVisible(true);
+        }
+
+
         parent.getChildren().add(txtSearch);
         ObservableList oldData = data;
         table.setItems(oldData);

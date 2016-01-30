@@ -1,17 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
-
-<AnchorPane prefHeight="476.0" prefWidth="606.0" styleClass="root" xmlns="http://javafx.com/javafx/null"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="baylon.controllers.WakePayment">
-    <children>
-
-    </children>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<AnchorPane prefHeight="739.0" prefWidth="1054.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baylon.controllers.WakePayment">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="12.0" prefHeight="680.0" prefWidth="583.0">
+         <children>
+            <TableView fx:id="tablePayments" layoutX="4.0" layoutY="291.0" prefHeight="389.0" prefWidth="552.0">
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+            <Label alignment="CENTER" layoutY="243.0" prefHeight="51.0" prefWidth="550.0" styleClass="h4" text="Payment History" textAlignment="CENTER" wrapText="true" />
+            <Label layoutX="429.0" layoutY="69.0" text="Total Paid: " />
+            <Label fx:id="lblPaid" layoutX="424.0" layoutY="88.0" prefHeight="47.0" prefWidth="120.0" styleClass="h4" text="PHP 1,000.00" />
+            <Label layoutX="59.0" layoutY="69.0" text="Remaining Balance: " />
+            <Label fx:id="lblRemaining" layoutX="59.0" layoutY="88.0" prefHeight="47.0" prefWidth="268.0" styleClass="h4" text="PHP 1,000.00" />
+            <Label fx:id="totalBill" alignment="CENTER" layoutX="19.0" layoutY="164.0" prefHeight="83.0" prefWidth="191.0" styleClass="h4" text="PHP 40,000.00" AnchorPane.leftAnchor="19.0" AnchorPane.topAnchor="164.0" />
+            <Label layoutX="51.0" layoutY="154.0" text="Total Bill:" AnchorPane.leftAnchor="51.0" AnchorPane.topAnchor="154.0" />
+            <Label fx:id="lbldeceased" alignment="CENTER" layoutX="47.0" layoutY="3.0" prefHeight="47.0" prefWidth="504.0" styleClass="h3" text="PHP 40,000.00" />
+            <Label layoutX="103.0" text="Deceased:" />
+         </children>
+      </AnchorPane>
+      <SplitPane fx:id="mainSplit" dividerPositions="1.0" layoutX="594.0" layoutY="33.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="594.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="root">
+               <children>
+                  <Label alignment="CENTER" layoutX="19.0" layoutY="6.0" style="-fx-background-color: #333;" text="Cash Payments" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <styleClass>
+                        <String fx:value="h4" />
+                        <String fx:value="text-white" />
+                     </styleClass>
+                  </Label>
+                  <Button layoutX="399.0" layoutY="47.0" mnemonicParsing="false" onAction="#OnlinePayments" styleClass="btn-primary" text="Online Payments" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0" />
+                  <TextField fx:id="txtPayment" alignment="CENTER" layoutX="56.0" layoutY="180.0" prefHeight="58.0" prefWidth="348.0" promptText="Enter Amount Received" styleClass="h3" AnchorPane.leftAnchor="55.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="179.0" />
+                  <Button layoutX="138.0" layoutY="272.0" mnemonicParsing="false" onAction="#AcceptPayment" prefHeight="32.0" prefWidth="197.0" styleClass="btn-success" text="Accept Payment" AnchorPane.leftAnchor="123.0" AnchorPane.rightAnchor="123.0" AnchorPane.topAnchor="272.0" />
+                  <Label fx:id="lblChange" layoutX="42.0" layoutY="349.0" text="Change:" visible="false" AnchorPane.leftAnchor="42.0" AnchorPane.topAnchor="349.0" />
+                  <Label fx:id="lblChangeData" alignment="CENTER" layoutX="42.0" layoutY="344.0" prefHeight="83.0" prefWidth="374.0" styleClass="h3" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="root">
+               <children>
+                  <Label alignment="CENTER" layoutX="39.0" layoutY="17.0" style="-fx-background-color: #333;" text="Online Payments" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <styleClass>
+                        <String fx:value="h4" />
+                        <String fx:value="text-white" />
+                     </styleClass>
+                  </Label>
+                  <Button alignment="CENTER" layoutX="406.0" layoutY="47.0" mnemonicParsing="false" onAction="#CashPayments" styleClass="btn-primary" text="Cash Payments" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
     <stylesheets>
-        <URL value="@css/fextile.css"/>
+        <URL value="@css/fextile.css" />
     </stylesheets>
 </AnchorPane>

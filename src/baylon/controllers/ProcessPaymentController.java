@@ -18,7 +18,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import static java.lang.Integer.*;
+import static java.lang.Integer.parseInt;
 
 
 public class ProcessPaymentController {
@@ -127,6 +127,7 @@ public class ProcessPaymentController {
 
             nvp.add(new BasicNameValuePair("ordercode",record.getString("ordercode")));
             nvp.add(new BasicNameValuePair("amount",amountPaid+""));
+            nvp.add(new BasicNameValuePair("method","Cash"));
             tblpayments.save(nvp);
 
         }

@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="1.0.5">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/repository/de/jensd/shichimifx/1.0.5/shichimifx-1.0.5.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/repository/de/jensd/shichimifx/1.0.5/shichimifx-1.0.5-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/repository/de/jensd/shichimifx/1.0.5/shichimifx-1.0.5.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

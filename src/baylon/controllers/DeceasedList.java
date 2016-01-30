@@ -1,15 +1,14 @@
 package baylon.controllers;
 
 import baylon.app.DataTable;
-import baylon.app.TableHelper;
 import baylon.models.Deceased;
+import de.jensd.shichimifx.utils.SplitPaneDividerSlider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TableView;
-import javafx.scene.input.MouseEvent;
-
+import javafx.scene.layout.AnchorPane;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,10 +23,22 @@ public class DeceasedList
     ResultSet deceased;
     @FXML
     TableView tabledeceased;
+    @FXML
+    SplitPane DeceasedSplit;
+    @FXML
+    AnchorPane newDeceasedAnchor;
 
     DataTable dataTable;
+    public static SplitPaneDividerSlider leftSplitPaneDividerSlider;
 
     public void initialize() throws SQLException {
+
+        leftSplitPaneDividerSlider = new SplitPaneDividerSlider(DeceasedSplit, 0, SplitPaneDividerSlider.Direction.UP);
+        DeceasedSplit.setMinWidth(com.sun.glass.ui.Screen.getMainScreen().getWidth());
+        newDeceasedAnchor.setMinWidth(com.sun.glass.ui.Screen.getMainScreen().getWidth());
+        newDeceasedAnchor.setMinHeight(com.sun.glass.ui.Screen.getMainScreen().getHeight());
+
+//        DeceasedSplit.setDividerPosition(1);
         deceased = tbldeceased.get();
         dataTable = new DataTable(tabledeceased);
         ArrayList<String> cols = new ArrayList<String>();
@@ -58,4 +69,15 @@ public class DeceasedList
 
 
     }
+
+    @FXML
+    void addNewDeceased(){
+        leftSplitPaneDividerSlider.setAimContentVisible(false);
+    }
+
+    @FXML
+    void ViewDeceased(){
+        leftSplitPaneDividerSlider.setAimContentVisible(true);
+    }
+
 }

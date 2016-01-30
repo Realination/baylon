@@ -3,24 +3,28 @@ package baylon.controllers;
 import baylon.app.App;
 import baylon.app.DataTable;
 import baylon.app.Functions;
-import baylon.app.TableHelper;
 import baylon.models.Orders;
 import baylon.models.Payments;
+import com.sun.glass.ui.Screen;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
-import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -114,12 +118,12 @@ public class CurrentWakes {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == btnProcessWake) {
-                wakeProcess(orders.getString("id"));
+                wakeProcess(orders.getString("ordercode")+"");
             } else if (result.get() == btnViewWake) {
-                wakePayment(orders.getString("id"));
+                wakePayment(orders.getString("ordercode")+"");
             }
         }else{
-            wakePayment(orders.getString("id"));
+            wakePayment(orders.getString("ordercode")+"");
         }
 
         } catch (SQLException e) {
@@ -130,18 +134,43 @@ public class CurrentWakes {
 
     }
 
-    private void wakeProcess(String id) {
+    private void wakeProcess(String ordercode) {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/baylon/views/ViewWakeDetails.fxml"));
         Functions.openScene(fxmlLoader,stage,"Baylon | Process  Wake",true,true);
         System.out.println("Select");
     }
 
-    private void wakePayment(String id) {
+    private void wakePayment(String ordercode) {
+
+
         Stage stage = new Stage();
+
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/baylon/views/WakePayment.fxml"));
-        Functions.openScene(fxmlLoader,stage,"Baylon | Wake Payment",true,true);
-        System.out.println("Select");
+        Parent root = null;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        WakePayment controller = fxmlLoader.getController();
+
+        stage.setScene(new Scene(root));
+        try {
+            System.out.print(ordercode);
+            controller.init(ordercode);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        stage.setWidth(Screen.getMainScreen().getWidth());
+        stage.setHeight(Screen.getMainScreen().getHeight());
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setMaximized(true);
+        stage.setTitle("Baylon | Wake Payment");
+        stage.show();
+
     }
 
 

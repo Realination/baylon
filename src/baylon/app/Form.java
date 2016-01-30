@@ -4,7 +4,8 @@ package baylon.app;
  * Created by Troll173 on 1/30/2016.
  */
 
-import javafx.scene.*;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -87,9 +88,11 @@ public class Form {
 
         if (validated){
             lblError.setText("");
+            errorFields.clear();
             return data;
         }else{
             displayError();
+            errorFields.clear();
             validated = true;
             return null;
         }
