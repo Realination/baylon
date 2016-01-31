@@ -20,7 +20,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
@@ -71,8 +70,8 @@ public class CurrentWakes {
             Double sum = tblpayments.getSum(nvpo,"amount");
             row.add(orders.getString("ordercode")+"");
             row.add(orders.getString("deceased")+"");
-            row.add(orders.getString("custom_price")+"");
-            row.add(sum);
+            row.add(Functions.toMoney(orders.getString("custom_price")+""));
+            row.add(Functions.toMoney(sum+""));
             row.add("");
             row.add(orders.getString("status")+"");
             data.add(row);
@@ -165,7 +164,7 @@ public class CurrentWakes {
         }
         stage.setWidth(Screen.getMainScreen().getWidth());
         stage.setHeight(Screen.getMainScreen().getHeight());
-        stage.initStyle(StageStyle.UNDECORATED);
+//        stage.initStyle(StageStyle.UNDECORATED);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setMaximized(true);
         stage.setTitle("Baylon | Wake Payment");

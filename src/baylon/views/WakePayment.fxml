@@ -24,7 +24,7 @@
             <Label layoutX="103.0" text="Deceased:" />
          </children>
       </AnchorPane>
-      <SplitPane fx:id="mainSplit" dividerPositions="1.0" layoutX="594.0" layoutY="33.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="594.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane fx:id="mainSplit" dividerPositions="0.0" layoutX="594.0" layoutY="33.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="594.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="root">
                <children>
@@ -39,6 +39,12 @@
                   <Button layoutX="138.0" layoutY="272.0" mnemonicParsing="false" onAction="#AcceptPayment" prefHeight="32.0" prefWidth="197.0" styleClass="btn-success" text="Accept Payment" AnchorPane.leftAnchor="123.0" AnchorPane.rightAnchor="123.0" AnchorPane.topAnchor="272.0" />
                   <Label fx:id="lblChange" layoutX="42.0" layoutY="349.0" text="Change:" visible="false" AnchorPane.leftAnchor="42.0" AnchorPane.topAnchor="349.0" />
                   <Label fx:id="lblChangeData" alignment="CENTER" layoutX="42.0" layoutY="344.0" prefHeight="83.0" prefWidth="374.0" styleClass="h3" />
+                  <AnchorPane fx:id="anchorPrint" layoutX="56.0" layoutY="94.0" prefHeight="47.0" prefWidth="346.0" visible="false" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="94.0">
+                     <children>
+                        <ProgressBar fx:id="progPrint" prefHeight="18.0" prefWidth="346.0" progress="0.0" AnchorPane.bottomAnchor="0.0" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Generating Receipt" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" />
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="root">
@@ -50,6 +56,7 @@
                      </styleClass>
                   </Label>
                   <Button alignment="CENTER" layoutX="406.0" layoutY="47.0" mnemonicParsing="false" onAction="#CashPayments" styleClass="btn-primary" text="Cash Payments" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="47.0" />
+                  <VBox fx:id="vOnlinePayments" layoutX="50.0" layoutY="93.0" prefHeight="569.0" prefWidth="378.0" />
                </children>
             </AnchorPane>
         </items>

@@ -11,16 +11,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.print.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.*;
 import javafx.scene.image.WritableImage;
-import javafx.scene.transform.Scale;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -38,6 +35,13 @@ public class WakePayment {
     Orders tblorders = Orders.getInstance();
     Deceased tbldeceased = Deceased.getInstance();
     ResultSet payments,orders,deceased;
+
+    @FXML
+    ProgressBar progPrint;
+    @FXML
+    AnchorPane anchorPrint;
+    @FXML
+    VBox vOnlinePayments;
     @FXML
     TableView tablePayments;
     @FXML
@@ -52,6 +56,7 @@ public class WakePayment {
     public static SplitPaneDividerSlider leftSplitPaneDividerSlider;
     double remaining = 0;
     String ordercode = "";
+    double total = 0;
     public void init(String ordecode) throws SQLException {
 
             NumberBox numberBox = new NumberBox(txtPayment);
@@ -61,8 +66,33 @@ public class WakePayment {
         mainSplit.setMinWidth(com.sun.glass.ui.Screen.getMainScreen().getWidth());
 
 
+        loadOnlinePayments();
+
         dataTable = new DataTable(tablePayments);
         load();
+    }
+
+    private void loadOnlinePayments() {
+        ArrayList<NameValuePair> where = new ArrayList<NameValuePair>();
+        where.add(new BasicNameValuePair("ordercode",ordercode));
+        where.add(new BasicNameValuePair("status","Pending"));
+        payments = tblPayments.get(where);
+        try {
+            payments.first();
+            while (payments.next()){
+                Label transNum = new Label(payments.getString("transnum")+" ("+payments.getString("method")+")");
+                Button btnConfirm = new Button("Confirm");
+                btnConfirm.getStyleClass().add("btn-success");
+                HBox hbox = new HBox();
+                hbox.getChildren().add(transNum);
+                hbox.getChildren().add(btnConfirm);
+                vOnlinePayments.getChildren().add(hbox);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -86,7 +116,7 @@ public class WakePayment {
         dataTable.setColumns(cols);
 
         totalBill.setText(Functions.toMoney(orders.getString("custom_price")));
-
+        total = orders.getDouble("custom_price");
         remaining = orders.getDouble("custom_price") - paid;
         lblRemaining.setText(Functions.toMoney(remaining+""));
         payments.beforeFirst();
@@ -111,26 +141,45 @@ public class WakePayment {
             ArrayList<NameValuePair> nvp = new ArrayList<NameValuePair>();
             nvp.add(new BasicNameValuePair("ordercode",ordercode));
             double amountPaid = Double.parseDouble(txtPayment.getText().toString());
-
+            double change = 0;
             if(amountPaid > remaining){
-                double change = amountPaid - remaining;
+                 change = amountPaid - remaining;
                 nvp.add(new BasicNameValuePair("amount",remaining+""));
                 lblChange.setVisible(true);
                 lblChangeData.setText(Functions.toMoney(change+""));
             }else{
+
                 nvp.add(new BasicNameValuePair("amount",amountPaid+""));
                 lblChange.setVisible(false);
                 lblChangeData.setText("Payment Received");
             }
             nvp.add(new BasicNameValuePair("method","Cash"));
+            nvp.add(new BasicNameValuePair("status","Confirmed"));
             tblPayments.save(nvp);
+
+            nvp.clear();
+            nvp.add(new BasicNameValuePair("ordercode",ordercode));
+            ResultSet newOrd = tblorders.get(nvp);
+            nvp.clear();
+            try {
+                newOrd.first();
+                if(newOrd.getString("status").equalsIgnoreCase("Partial")){
+                    nvp.add(new BasicNameValuePair("status","Paid"));
+                }else if(newOrd.getString("status").equalsIgnoreCase("Balance")){
+                    nvp.add(new BasicNameValuePair("status","Complete"));
+                }
+                tblorders.save(nvp,newOrd.getString("id"));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
 
             try {
                 load();
                 lblChange.setVisible(false);
                 lblChangeData.setText("");
                 txtPayment.setText("");
-                printReceipt();
+                printReceipt(ordercode,total+"",amountPaid+"",change+"");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -145,7 +194,8 @@ public class WakePayment {
     }
 
 
-    void printReceipt(){
+    void printReceipt(String ordercode,String total,String paid,String change){
+        anchorPrint.setVisible(true);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/baylon/views/Receipt.fxml"));
         Parent root = null;
         try {
@@ -154,34 +204,21 @@ public class WakePayment {
             e.printStackTrace();
         }
         Receipt controller = fxmlLoader.getController();
-        controller.initialize();
+        controller.initialize(ordercode,total,paid,change);
         Scene scene = new Scene(root);
         WritableImage snapshot = scene.snapshot(null);
-
+        progPrint.setProgress(snapshot.getProgress());
         Stage stage = new Stage();
-        print(snapshot,stage);
+//        stage.setScene(scene);
+//        stage.show();
+        Functions.print(snapshot, stage);
+
+        anchorPrint.setVisible(false);
+        progPrint.setProgress(0.0);
     }
 
 
-    public void print(WritableImage writableImage, Stage primaryStage) {
-        ImageView imageView =new ImageView(writableImage);
-        Printer printer = Printer.getDefaultPrinter();
-        PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.PORTRAIT, Printer.MarginType.HARDWARE_MINIMUM);
-        double scaleX = pageLayout.getPrintableWidth() / imageView.getBoundsInParent().getWidth();
-        double scaleY = pageLayout.getPrintableHeight() / imageView.getBoundsInParent().getHeight();
-        imageView.getTransforms().add(new Scale(scaleX, scaleY));
 
-        PrinterJob job = PrinterJob.createPrinterJob();
-        if (job != null) {
-            boolean successPrintDialog = job.showPrintDialog(primaryStage.getOwner());
-            if(successPrintDialog){
-                boolean success = job.printPage(pageLayout,imageView);
-                if (success) {
-                    job.endJob();
-                }
-            }
-        }
-    }
 
     @FXML
     void OnlinePayments(){

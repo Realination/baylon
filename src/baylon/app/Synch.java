@@ -131,6 +131,11 @@ public class Synch extends TimerTask{
                        if(!json.names().getString(o).equalsIgnoreCase("offline_id")){
                            s += "key = " + json.names().getString(o) + " value = " + json.get(json.names().getString(o))+",";
                            nvp.add(new BasicNameValuePair(json.names().getString(o),json.get(json.names().getString(o)).toString()));
+
+                       }
+                   }else{
+                       if(json.names().getString(o).equalsIgnoreCase("id")){
+                           nvp.add(new BasicNameValuePair("offline_id",json.get(json.names().getString(o)).toString()));
                        }
                    }
 
@@ -171,9 +176,9 @@ public class Synch extends TimerTask{
                     if(!json.names().getString(o).equalsIgnoreCase("offline_id")){
                         s += "key = " + json.names().getString(o) + " value = " + json.get(json.names().getString(o)) + ",";
                         nvp.add(new BasicNameValuePair(json.names().getString(o), json.get(json.names().getString(o)).toString()));
-                    }else{
-                        id = json.get(json.names().getString(o)).toString();
                     }
+                }else{
+                    id = json.get("id").toString();
                 }
 
             }

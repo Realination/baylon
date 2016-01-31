@@ -1,183 +1,218 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane fx:id="anchorMain" layoutY="1.0" prefHeight="617.0" prefWidth="680.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baylon.controllers.Receipt">
+<AnchorPane fx:id="anchorMain" layoutY="1.0" prefHeight="639.0" prefWidth="680.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baylon.controllers.Receipt">
    <children>
-      <ImageView fitHeight="95.0" fitWidth="184.0" layoutX="27.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../media/logopink.png" />
-         </image>
-      </ImageView>
-      <Label alignment="CENTER" layoutX="230.0" layoutY="21.0" text="BAYLON FUNERAL HOME" textAlignment="CENTER" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="21.0">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font></Label>
-      <Label layoutX="33.0" layoutY="105.0" text="Sold to:" AnchorPane.leftAnchor="33.0" AnchorPane.topAnchor="105.0">
-         <font>
-            <Font size="9.0" />
-         </font></Label>
-      <Label layoutX="68.0" layoutY="93.0" prefHeight="17.0" prefWidth="83.0" text="Yu" AnchorPane.leftAnchor="68.0">
-         <font>
-            <Font size="9.0" />
-         </font></Label>
-      <Label layoutX="68.0" layoutY="104.0" prefHeight="17.0" prefWidth="83.0" text="Cab" AnchorPane.leftAnchor="68.0">
-         <font>
-            <Font size="9.0" />
-         </font></Label>
-      <Label layoutX="33.0" layoutY="106.0" text="Address:" AnchorPane.leftAnchor="33.0">
-         <font>
-            <Font size="9.0" />
-         </font></Label>
-      <Label layoutX="33.0" layoutY="118.0" text="Tel. No.:" AnchorPane.leftAnchor="33.0">
-         <font>
-            <Font size="9.0" />
-         </font></Label>
-      <Label layoutX="68.0" layoutY="116.0" prefHeight="17.0" prefWidth="83.0" text="033" AnchorPane.leftAnchor="68.0">
-         <font>
-            <Font size="9.0" />
-         </font></Label>
-      <Label layoutX="33.0" layoutY="130.0" text="Business Style:" AnchorPane.leftAnchor="33.0">
-         <font>
-            <Font size="9.0" />
-         </font></Label>
-      <Label layoutX="521.0" layoutY="93.0" prefHeight="17.0" prefWidth="83.0" text="01-13-2015">
-         <font>
-            <Font size="9.0" />
-         </font></Label>
-      <Label layoutX="498.0" layoutY="105.0" text="Date:" AnchorPane.leftAnchor="498.0" AnchorPane.topAnchor="105.0">
-         <font>
-            <Font size="9.0" />
-         </font></Label>
-      <Label layoutX="498.0" layoutY="105.0" text="Terms:" AnchorPane.leftAnchor="498.0">
-         <font>
-            <Font size="9.0" />
-         </font></Label>
-      <Label layoutX="526.0" layoutY="104.0" prefHeight="17.0" prefWidth="83.0" text="TRM">
-         <font>
-            <Font size="9.0" />
-         </font></Label>
-      <Label layoutX="547.0" layoutY="114.0" prefHeight="17.0" prefWidth="77.0" text="Mr. Blah">
-         <font>
-            <Font size="9.0" />
-         </font></Label>
-      <Label layoutX="498.0" layoutY="116.0" text="Sale Person:" AnchorPane.leftAnchor="498.0">
-         <font>
-            <Font size="9.0" />
-         </font></Label>
-      <Label layoutX="498.0" layoutY="128.0" text="TIN:" AnchorPane.leftAnchor="498.0">
-         <font>
-            <Font size="9.0" />
-         </font></Label>
-      <Label layoutX="513.0" layoutY="126.0" prefHeight="17.0" prefWidth="64.0" text="1234-123">
-         <font>
-            <Font size="9.0" />
-         </font></Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="230.0" layoutY="67.0" text="CASH SALES INVOICE" textAlignment="CENTER" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="230.0">
+      <Label alignment="CENTER" layoutX="230.0" layoutY="21.0" text="BAYLON FUNERAL HOME" textAlignment="CENTER" visible="false" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="230.0" AnchorPane.topAnchor="21.0">
          <font>
             <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="20.0" layoutY="78.0" prefHeight="12.0" prefWidth="31.0" text="Sold to:" visible="false" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="78.0">
+         <font>
+            <Font size="7.0" />
+         </font></Label>
+      <Label fx:id="lblname" layoutX="47.0" layoutY="76.0" prefHeight="17.0" prefWidth="83.0" text="Yu" wrapText="true" AnchorPane.leftAnchor="47.0">
+         <font>
+            <Font size="7.0" />
+         </font></Label>
+      <Label fx:id="lbladdress" layoutX="48.0" layoutY="84.0" prefHeight="17.0" prefWidth="83.0" text="Cab" wrapText="true" AnchorPane.leftAnchor="48.0">
+         <font>
+            <Font size="7.0" />
+         </font></Label>
+      <Label layoutX="20.0" layoutY="87.0" text="Address:" visible="false" AnchorPane.leftAnchor="20.0">
+         <font>
+            <Font size="7.0" />
+         </font></Label>
+      <Label layoutX="20.0" layoutY="95.0" text="Tel. No.:" visible="false" AnchorPane.leftAnchor="20.0">
+         <font>
+            <Font size="7.0" />
+         </font></Label>
+      <Label fx:id="lblmobile" layoutX="49.0" layoutY="92.0" prefHeight="17.0" prefWidth="83.0" text="033" wrapText="true" AnchorPane.leftAnchor="49.0">
+         <font>
+            <Font size="7.0" />
+         </font></Label>
+      <Label layoutX="20.0" layoutY="102.0" text="Business Style:" visible="false" AnchorPane.leftAnchor="20.0">
+         <font>
+            <Font size="7.0" />
+         </font></Label>
+      <Label layoutX="570.0" layoutY="76.0" prefHeight="17.0" prefWidth="83.0" text="01-13-2015" wrapText="true">
+         <font>
+            <Font size="7.0" />
+         </font></Label>
+      <Label layoutX="547.0" layoutY="79.0" text="Date:" visible="false" AnchorPane.leftAnchor="547.0" AnchorPane.topAnchor="79.0">
+         <font>
+            <Font size="7.0" />
+         </font></Label>
+      <Label layoutX="547.0" layoutY="87.0" text="Terms:" visible="false" AnchorPane.leftAnchor="547.0">
+         <font>
+            <Font size="7.0" />
+         </font></Label>
+      <Label layoutX="570.0" layoutY="84.0" prefHeight="17.0" prefWidth="83.0" text="TRM" wrapText="true">
+         <font>
+            <Font size="7.0" />
+         </font></Label>
+      <Label layoutX="586.0" layoutY="92.0" prefHeight="17.0" prefWidth="77.0" text="Mr. Blah" wrapText="true">
+         <font>
+            <Font size="7.0" />
+         </font></Label>
+      <Label layoutX="547.0" layoutY="95.0" text="Sale Person:" visible="false" AnchorPane.leftAnchor="547.0">
+         <font>
+            <Font size="7.0" />
+         </font></Label>
+      <Label layoutX="547.0" layoutY="103.0" text="TIN:" visible="false" AnchorPane.leftAnchor="547.0">
+         <font>
+            <Font size="7.0" />
+         </font></Label>
+      <Label layoutX="562.0" layoutY="100.0" prefHeight="17.0" prefWidth="64.0" text="1234-123" wrapText="true">
+         <font>
+            <Font size="7.0" />
+         </font></Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="230.0" layoutY="60.0" text="CASH SALES INVOICE" textAlignment="CENTER" visible="false" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="230.0">
+         <font>
+            <Font name="System Bold" size="10.0" />
          </font>
       </Label>
-      <Label layoutX="477.0" layoutY="62.0" prefHeight="16.0" prefWidth="46.0" text="NO.:" textFill="#ee1616">
+      <Label layoutX="477.0" layoutY="24.0" prefHeight="16.0" prefWidth="32.0" text="NO.:" textFill="#ee1616" visible="false">
          <font>
-            <Font name="Courier New" size="14.0" />
+            <Font name="Courier New" size="11.0" />
          </font>
       </Label>
-      <Label layoutX="22.0" layoutY="294.0" text="S.O NO.">
+      <Label layoutX="21.0" layoutY="238.0" text="S.O NO." visible="false">
          <font>
-            <Font size="9.0" />
+            <Font size="7.0" />
          </font></Label>
-      <Label layoutX="69.0" layoutY="294.0" text="1234">
+      <Label layoutX="50.0" layoutY="238.0" text="1234" wrapText="true">
          <font>
-            <Font size="9.0" />
+            <Font name="Courier New" size="7.0" />
          </font></Label>
-      <Label layoutX="97.0" layoutY="311.0" prefHeight="17.0" prefWidth="83.0" text="Mrs Ma. Grace">
+      <Label layoutX="68.0" layoutY="244.0" prefHeight="17.0" prefWidth="83.0" text="Mrs Ma. Grace" wrapText="true">
          <font>
-            <Font size="9.0" />
+            <Font name="Courier New" size="7.0" />
          </font></Label>
-      <Label layoutX="22.0" layoutY="311.0" text="Approved By:">
+      <Label layoutX="21.0" layoutY="248.0" text="Approved By:" visible="false">
          <font>
-            <Font size="9.0" />
+            <Font size="7.0" />
          </font></Label>
-      <Label layoutX="22.0" layoutY="330.0" text="Inspected By:">
+      <Label layoutX="21.0" layoutY="258.0" text="Inspected By:" visible="false">
          <font>
-            <Font size="9.0" />
+            <Font size="7.0" />
          </font></Label>
-      <Label layoutX="97.0" layoutY="330.0" prefHeight="17.0" prefWidth="83.0" text="Mrs Ma. Grace">
+      <Label layoutX="68.0" layoutY="256.0" prefHeight="17.0" prefWidth="83.0" text="Mrs Ma. Grace" wrapText="true">
          <font>
-            <Font size="9.0" />
+            <Font name="Courier New" size="7.0" />
          </font></Label>
-      <Label layoutX="499.0" layoutY="309.0" prefHeight="17.0" prefWidth="83.0" text="Mrs Ma. Grace">
+      <Label layoutX="530.0" layoutY="255.0" prefHeight="17.0" prefWidth="83.0" text="Mrs Ma. Grace" wrapText="true">
          <font>
-            <Font size="9.0" />
+            <Font size="7.0" />
          </font></Label>
-      <Label layoutX="470.0" layoutY="309.0" text="By:">
+      <Label layoutX="517.0" layoutY="257.0" text="By:" visible="false">
          <font>
-            <Font size="9.0" />
+            <Font size="7.0" />
          </font></Label>
-      <Label layoutX="18.0" layoutY="250.0" prefHeight="15.0" prefWidth="231.0" text="PRESENT THIS RECEIPT TO CLAIM WARRANTY.">
+      <Label layoutX="18.0" layoutY="211.0" prefHeight="15.0" prefWidth="231.0" text="PRESENT THIS RECEIPT TO CLAIM WARRANTY." visible="false">
          <font>
             <Font name="System Bold" size="7.0" />
          </font>
       </Label>
-      <Label layoutX="18.0" layoutY="262.0" prefHeight="15.0" prefWidth="315.0" text="Note: Please read Warranty agreement at the back before signing">
+      <Label layoutX="18.0" layoutY="223.0" prefHeight="15.0" prefWidth="315.0" text="Note: Please read Warranty agreement at the back before signing" visible="false">
          <font>
             <Font name="System Bold" size="7.0" />
          </font>
       </Label>
-      <Label layoutX="576.0" layoutY="249.0" prefHeight="17.0" prefWidth="64.0" text="19,990.00">
+      <Label fx:id="lbltotal" layoutX="619.0" layoutY="209.0" prefHeight="17.0" prefWidth="64.0" text="19,990.00" wrapText="true">
          <font>
-            <Font size="9.0" />
+            <Font name="Courier New Bold" size="7.0" />
          </font>
       </Label>
-      <Label layoutX="545.0" layoutY="251.0" text="TOTAL:">
+      <Label layoutX="591.0" layoutY="213.0" text="TOTAL:" visible="false">
          <font>
-            <Font size="9.0" />
+            <Font name="System Bold" size="7.0" />
          </font></Label>
-      <Label layoutX="22.0" layoutY="358.0" prefHeight="15.0" prefWidth="362.0" text="This Cash Sales Invoice shall be valid for five (5) years from the date of ATP.">
+      <Label layoutX="22.0" layoutY="269.0" prefHeight="15.0" prefWidth="362.0" text="This Cash Sales Invoice shall be valid for five (5) years from the date of ATP." visible="false">
          <font>
-            <Font size="9.0" />
+            <Font size="7.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="267.0" layoutY="36.0" prefHeight="15.0" prefWidth="145.0" text="Bgry. Ayaman Cabatuan Iloilo" textAlignment="CENTER" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="230.0">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="230.0" layoutY="30.0" prefHeight="15.0" prefWidth="145.0" text="Bgry. Ayaman Cabatuan Iloilo" textAlignment="CENTER" visible="false" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="230.0">
          <font>
-            <Font size="10.0" />
+            <Font size="8.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="284.0" layoutY="49.0" prefHeight="15.0" prefWidth="145.0" text="Tel. No. : 033-05431" textAlignment="CENTER" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="230.0">
+      <Label alignment="CENTER" layoutX="230.0" layoutY="40.0" prefHeight="15.0" prefWidth="145.0" text="Tel. No. : 033-05431" textAlignment="CENTER" visible="false" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="230.0">
          <font>
-            <Font size="10.0" />
+            <Font size="8.0" />
          </font>
       </Label>
-      <TableView layoutX="17.0" layoutY="146.0" prefHeight="105.0" prefWidth="639.0">
-        <columns>
-          <TableColumn prefWidth="93.66666412353516" text="Qty" />
-          <TableColumn prefWidth="88.33334350585938" text="Changes" />
-            <TableColumn prefWidth="198.66665649414062" text="Service" />
-            <TableColumn prefWidth="140.33334350585938" text="Type" />
-            <TableColumn minWidth="0.0" prefWidth="117.00003051757812" text="Price" />
-        </columns>
-      </TableView>
-      <Label layoutX="576.0" layoutY="259.0" prefHeight="17.0" prefWidth="64.0" text="19,990.00">
+      <Label fx:id="lblrecieve" layoutX="619.0" layoutY="218.0" prefHeight="17.0" prefWidth="64.0" text="19,990.00" wrapText="true">
          <font>
-            <Font size="9.0" />
+            <Font name="Courier New Bold" size="7.0" />
          </font>
       </Label>
-      <Label layoutX="533.0" layoutY="260.0" text="RECEIVED:">
+      <Label layoutX="579.0" layoutY="222.0" text="RECEIVED:" visible="false">
          <font>
-            <Font size="9.0" />
+            <Font name="System Bold" size="7.0" />
          </font></Label>
-      <Label layoutX="577.0" layoutY="269.0" prefHeight="17.0" prefWidth="64.0" text="19,990.00">
+      <Label fx:id="lblchange" layoutX="619.0" layoutY="227.0" prefHeight="17.0" prefWidth="64.0" text="19,990.00" wrapText="true">
          <font>
-            <Font size="9.0" />
+            <Font name="Courier New Bold" size="7.0" />
          </font>
       </Label>
-      <Label layoutX="537.0" layoutY="270.0" text="CHANGE:">
+      <Label layoutX="583.0" layoutY="230.0" text="CHANGE:" visible="false">
          <font>
-            <Font size="9.0" />
+            <Font name="System Bold" size="7.0" />
          </font></Label>
+      <Label fx:id="lblcompany" layoutX="66.0" layoutY="101.0" text="Label" wrapText="true">
+         <font>
+            <Font size="7.0" />
+         </font>
+      </Label>
+      <Rectangle arcWidth="5.0" fill="WHITE" height="101.0" layoutX="19.5" layoutY="112.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.5" width="647.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="20.0" />
+      <Line endX="545.0" layoutX="121.0" layoutY="123.0" startX="-100.0" strokeMiterLimit="999.0" strokeWidth="0.5" AnchorPane.leftAnchor="20.5" AnchorPane.rightAnchor="20.5" />
+      <Line endX="545.0" layoutX="122.0" layoutY="133.0" startX="-100.0" strokeMiterLimit="999.0" strokeWidth="0.5" AnchorPane.leftAnchor="20.5" />
+      <Line endX="545.0" layoutX="141.0" layoutY="143.0" startX="-100.0" strokeMiterLimit="999.0" strokeWidth="0.5" AnchorPane.leftAnchor="20.5" />
+      <Line endX="545.0" layoutX="151.0" layoutY="153.0" startX="-100.0" strokeMiterLimit="999.0" strokeWidth="0.5" AnchorPane.leftAnchor="20.5" />
+      <Line endX="545.0" layoutX="161.0" layoutY="163.0" startX="-100.0" strokeMiterLimit="999.0" strokeWidth="0.5" AnchorPane.leftAnchor="20.5" />
+      <Line endX="545.0" layoutX="171.0" layoutY="173.0" startX="-100.0" strokeMiterLimit="999.0" strokeWidth="0.5" AnchorPane.leftAnchor="20.5" />
+      <Line endX="545.0" layoutX="181.0" layoutY="183.0" startX="-100.0" strokeMiterLimit="999.0" strokeWidth="0.5" AnchorPane.leftAnchor="20.5" />
+      <Line endX="545.0" layoutX="191.0" layoutY="193.0" startX="-100.0" strokeMiterLimit="999.0" strokeWidth="0.5" AnchorPane.leftAnchor="20.5" />
+      <Line endX="545.0" layoutX="201.0" layoutY="203.0" startX="-100.0" strokeMiterLimit="999.0" strokeWidth="0.5" AnchorPane.leftAnchor="20.5" />
+      <Rectangle fill="#dad7d7" height="11.0" layoutX="19.0" layoutY="112.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.5" width="648.0" />
+      <Line endY="100.0" layoutX="123.0" layoutY="112.0" />
+      <Line endY="100.0" layoutX="536.0" layoutY="114.0" />
+      <Line endY="100.0" layoutX="353.0" layoutY="114.0" />
+      <Line endY="100.0" layoutX="237.0" layoutY="113.0" />
+      <Label layoutX="54.0" layoutY="112.0" text="Quantity">
+         <font>
+            <Font size="6.0" />
+         </font>
+      </Label>
+      <Label layoutX="169.0" layoutY="112.0" text="Changes">
+         <font>
+            <Font size="6.0" />
+         </font>
+      </Label>
+      <Label layoutX="281.0" layoutY="112.0" text="Services">
+         <font>
+            <Font size="6.0" />
+         </font>
+      </Label>
+      <Label layoutX="434.0" layoutY="112.0" text="Type">
+         <font>
+            <Font size="6.0" />
+         </font>
+      </Label>
+      <Label layoutX="597.0" layoutY="112.0" text="Price">
+         <font>
+            <Font size="6.0" />
+         </font>
+      </Label>
+      <VBox fx:id="vQty" alignment="CENTER" layoutX="18.0" layoutY="122.0" prefHeight="91.0" prefWidth="106.0" style="-fx-font-size: 6;" AnchorPane.topAnchor="111.0" />
+      <VBox fx:id="vChanges" alignment="CENTER" layoutX="124.0" layoutY="124.0" prefHeight="91.0" prefWidth="115.0" style="-fx-font-size: 6;" AnchorPane.topAnchor="111.0" />
+      <VBox fx:id="vServices" alignment="CENTER" layoutX="235.0" layoutY="122.0" prefHeight="91.0" prefWidth="121.0" style="-fx-font-size: 6;" AnchorPane.topAnchor="111.0" />
+      <VBox fx:id="vType" alignment="CENTER" layoutX="353.0" layoutY="124.0" prefHeight="91.0" prefWidth="183.0" style="-fx-font-size: 6;" AnchorPane.topAnchor="111.0" />
+      <VBox fx:id="vPrice" alignment="CENTER" layoutX="536.0" layoutY="122.0" prefHeight="91.0" prefWidth="130.0" style="-fx-font-size: 6;" AnchorPane.topAnchor="111.0" />
    </children>
 </AnchorPane>

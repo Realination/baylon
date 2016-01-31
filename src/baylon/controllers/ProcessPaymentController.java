@@ -128,6 +128,7 @@ public class ProcessPaymentController {
             nvp.add(new BasicNameValuePair("ordercode",record.getString("ordercode")));
             nvp.add(new BasicNameValuePair("amount",amountPaid+""));
             nvp.add(new BasicNameValuePair("method","Cash"));
+            nvp.add(new BasicNameValuePair("status","Confirmed"));
             tblpayments.save(nvp);
 
         }
