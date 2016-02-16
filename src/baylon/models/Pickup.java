@@ -22,22 +22,24 @@ import java.util.ArrayList;
  *
  * @author DarkMatter
  */
-public class Orders extends Model{
-    private static String tblName = "custpack";
-    private static String primaryKey = "id";
-    private static Orders instance;
+public class Pickup extends Model{
+    private static String tblName = "pickup";
+    private static String primaryKey = "uid";
 
-    public static Orders getInstance() {
+    private static Pickup instance;
+
+    public static Pickup getInstance() {
         if (instance == null) {
-            synchronized (Orders.class) {
+            synchronized (Pickup.class) {
                 if (instance == null) {
-                    instance = new Orders();
+                    instance = new Pickup();
 
                 }
             }
         }
         return instance;
     }
+
 
     @Override
     public int save(ArrayList<NameValuePair> data) {
@@ -46,6 +48,7 @@ public class Orders extends Model{
         BaylonFunctions funcs = new BaylonFunctions();
         int generatedKey = 0;
         data =  funcs.addCreatedAt(data);
+
         boolean found = false;
         for (NameValuePair dtum: data){
             if(dtum.getName().equalsIgnoreCase("uid")){
@@ -98,6 +101,7 @@ public class Orders extends Model{
         }
         return generatedKey;
     }
+
 
     @Override
     public String tblName() {

@@ -1,6 +1,7 @@
 package baylon.controllers;
 
 
+import baylon.app.BaylonFunctions;
 import baylon.app.Constants;
 import baylon.app.Functions;
 import baylon.models.*;
@@ -11,9 +12,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import org.apache.http.HttpException;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
+import java.net.URISyntaxException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -33,7 +36,7 @@ public class ProcessPaymentController {
     Button btnPay;
 
     private ResultSet record;
-    Users tblusers = new Users();
+    Customers tblusers = new Customers();
     Admin tbladmin = new Admin();
     Orders orders = new Orders();
     Payments tblpayments = new Payments();
@@ -41,6 +44,8 @@ public class ProcessPaymentController {
     ResultSet users,admins,deceased;
 
     Constants constants = Constants.getInstance();
+
+    BaylonFunctions funcs = new BaylonFunctions();
 
     Double down;
 
@@ -76,11 +81,11 @@ public class ProcessPaymentController {
         }
 
         if(record.getString("customer") != null){
-           if(parseInt(record.getString("customer"))>0 ){
+//           if(parseInt(record.getString("customer"))>0 ){
                users = tblusers.get(record.getString("customer"));
                users.first();
                lblCustomer.setText(users.getString("lastname")+", "+users.getString("firstname"));
-           }
+//           }
         }else{
             lblCustomer.setText("N/A");
         }
@@ -121,7 +126,15 @@ public class ProcessPaymentController {
                 nvp.add(new BasicNameValuePair("status","Partial"));
             }
 
-            orders.save(nvp,record.getString("id"));
+
+            try {
+                orders.save(nvp,record.getString("id"));
+                funcs.SyncEdit(nvp,"custpack",record.getString("offline_id"));
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            } catch (HttpException e) {
+                e.printStackTrace();
+            }
             nvp.clear();
 
 
@@ -129,8 +142,14 @@ public class ProcessPaymentController {
             nvp.add(new BasicNameValuePair("amount",amountPaid+""));
             nvp.add(new BasicNameValuePair("method","Cash"));
             nvp.add(new BasicNameValuePair("status","Confirmed"));
-            tblpayments.save(nvp);
-
+            int pid = tblpayments.save(nvp);
+            try {
+                funcs.SyncAdd(nvp,"payments",pid+"");
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            } catch (HttpException e) {
+                e.printStackTrace();
+            }
         }
 
     }

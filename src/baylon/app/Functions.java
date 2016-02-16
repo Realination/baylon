@@ -16,8 +16,15 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.w3c.dom.Document;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Random;
@@ -140,6 +147,24 @@ public class Functions {
             }
         }
 
+    }
+
+
+    public static JSONArray parseJson(String file) {
+        String location = baylon.baylon.class.getResource(file).toString().replace("file:", "").replace("%20"," ");
+        System.out.println(location);
+        File js = new File(location);
+        String content = null;
+        JSONArray jArray = null;
+        try {
+            content = new String(Files.readAllBytes(js.toPath()));
+            jArray = new JSONArray(content);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return jArray;
     }
 
 }

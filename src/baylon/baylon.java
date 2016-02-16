@@ -3,29 +3,18 @@ package baylon;
  * Created by troll173 on 11/24/15.
  */
 
-import baylon.app.App;
-import baylon.app.Constants;
-import baylon.app.Model;
-import baylon.app.Synch;
-import com.sun.org.apache.xml.internal.resolver.helpers.FileURL;
+import baylon.app.*;
+import baylon.models.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Enumeration;
-import java.util.Objects;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Timer;
-import java.util.stream.Stream;
 
 public class baylon extends Application {
 
@@ -33,25 +22,23 @@ public class baylon extends Application {
         launch(args);
     }
    Constants constants = Constants.getInstance();
-    App app;
+
+    Misc tblmisc = Misc.getInstance();
+
     @Override
-    public void start(Stage primaryStage) throws IOException {
-
-
-        app = App.getInstance();
-
-
-
-
-
+    public void start(Stage primaryStage) throws IOException, SQLException {
+        ResultSet misc = tblmisc.get("2");
+        misc.first();
+        Backup backup = new Backup(misc.getString("data"),15000);
 
         Parent root = null;
-        try {
-            Timer timer = new Timer();
-            timer.schedule(new Synch(), 0, 15000);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+
+        Synch orders = new Synch(Orders.getInstance(),15000);
+        Synch deceased = new Synch(Deceased.getInstance(),15000);
+        Synch customers = new Synch(Customers.getInstance(),15000);
+        Synch payments = new Synch(Payments.getInstance(),15000);
+        Synch pickups = new Synch(Pickup.getInstance(),15000);
+
 
         constants.addValue("netStat","Offline");
 

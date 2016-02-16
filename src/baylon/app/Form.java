@@ -72,10 +72,18 @@ public class Form {
                     data.add(new BasicNameValuePair(txt.getId()+"",txt.getText().toString()));
                 }else if (txtField.getClass().toString().equalsIgnoreCase("class javafx.scene.control.ComboBox")){
                     ComboBox txt = (ComboBox)txtField;
-                    data.add(new BasicNameValuePair(txt.getId()+"",txt.getValue().toString()));
+                    try{
+                        data.add(new BasicNameValuePair(txt.getId()+"",txt.getValue().toString()));
+                    }catch (Exception e){
+                        data.add(new BasicNameValuePair(txt.getId()+"",""));
+                    }
                 }else if (txtField.getClass().toString().equalsIgnoreCase("class javafx.scene.control.DatePicker")){
                     DatePicker txt = (DatePicker)txtField;
-                    data.add(new BasicNameValuePair(txt.getId()+"",txt.getValue().toString()));
+                    try {
+                        data.add(new BasicNameValuePair(txt.getId()+"",txt.getValue().toString()));
+                    }catch (Exception e){
+                        data.add(new BasicNameValuePair(txt.getId()+"",""));
+                    }
                 } else if (txtField.getClass().toString().equalsIgnoreCase("class javafx.scene.control.TextArea")){
                     TextArea txt = (TextArea)txtField;
                     data.add(new BasicNameValuePair(txt.getId()+"",txt.getText().toString()));
@@ -86,10 +94,15 @@ public class Form {
         }
 
 
+
         if (validated){
-            lblError.setText("");
-            errorFields.clear();
-            return data;
+          try {
+              lblError.setText("");
+              errorFields.clear();
+              return data;
+          }catch (Exception e ){
+              return  data;
+          }
         }else{
             displayError();
             errorFields.clear();
@@ -109,4 +122,31 @@ public class Form {
         this.lblError = lbl;
     }
 
+
+    public void clear(){
+        for (Node txtField: txtFields){
+            if (txtField.getClass().toString().equalsIgnoreCase("class javafx.scene.control.TextField")){
+                TextField txt = (TextField)txtField;
+                txt.setText("");
+            }else if (txtField.getClass().toString().equalsIgnoreCase("class javafx.scene.control.ComboBox")){
+                ComboBox txt = (ComboBox)txtField;
+                try{
+                    data.add(new BasicNameValuePair(txt.getId()+"",txt.getValue().toString()));
+                }catch (Exception e){
+                    data.add(new BasicNameValuePair(txt.getId()+"",""));
+                }
+            }else if (txtField.getClass().toString().equalsIgnoreCase("class javafx.scene.control.DatePicker")){
+                DatePicker txt = (DatePicker)txtField;
+                try {
+                    data.add(new BasicNameValuePair(txt.getId()+"",txt.getValue().toString()));
+                }catch (Exception e){
+                    data.add(new BasicNameValuePair(txt.getId()+"",""));
+                }
+            } else if (txtField.getClass().toString().equalsIgnoreCase("class javafx.scene.control.TextArea")){
+                TextArea txt = (TextArea)txtField;
+                data.add(new BasicNameValuePair(txt.getId()+"",txt.getText().toString()));
+            }
+
+        }
+    }
 }

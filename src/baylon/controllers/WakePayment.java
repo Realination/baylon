@@ -9,6 +9,8 @@ import baylon.models.Payments;
 import de.jensd.shichimifx.utils.SplitPaneDividerSlider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,6 +28,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 /**
  * Created by Troll173 on 1/30/2016.
@@ -41,9 +44,7 @@ public class WakePayment {
     @FXML
     AnchorPane anchorPrint;
     @FXML
-    VBox vOnlinePayments;
-    @FXML
-    TableView tablePayments;
+    TableView tablePayments,tableOnline;
     @FXML
     Label lblPaid,totalBill,lbldeceased,lblRemaining,lblChange,lblChangeData;
 //    @FXML
@@ -52,7 +53,7 @@ public class WakePayment {
     TextField txtPayment;
     @FXML
     SplitPane mainSplit;
-    DataTable dataTable;
+    DataTable dataTable,dataOnline;
     public static SplitPaneDividerSlider leftSplitPaneDividerSlider;
     double remaining = 0;
     String ordercode = "";
@@ -65,10 +66,11 @@ public class WakePayment {
         leftSplitPaneDividerSlider = new SplitPaneDividerSlider(mainSplit, 0, SplitPaneDividerSlider.Direction.UP);
         mainSplit.setMinWidth(com.sun.glass.ui.Screen.getMainScreen().getWidth());
 
-
-        loadOnlinePayments();
+        System.out.println("wake Payments");
 
         dataTable = new DataTable(tablePayments);
+        dataOnline = new DataTable(tableOnline);
+        loadOnlinePayments();
         load();
     }
 
@@ -77,30 +79,83 @@ public class WakePayment {
         where.add(new BasicNameValuePair("ordercode",ordercode));
         where.add(new BasicNameValuePair("status","Pending"));
         payments = tblPayments.get(where);
+        ArrayList<String> ocols = new ArrayList<String>();
+        ocols.add("Transaction #");
+        ocols.add("Method");
+        ocols.add("Date");
+        dataOnline.setColumns(ocols);
         try {
-            payments.first();
+            payments.beforeFirst();
+            ObservableList data = FXCollections.observableArrayList();
             while (payments.next()){
-                Label transNum = new Label(payments.getString("transnum")+" ("+payments.getString("method")+")");
-                Button btnConfirm = new Button("Confirm");
-                btnConfirm.getStyleClass().add("btn-success");
-                HBox hbox = new HBox();
-                hbox.getChildren().add(transNum);
-                hbox.getChildren().add(btnConfirm);
-                vOnlinePayments.getChildren().add(hbox);
+                ObservableList row = FXCollections.observableArrayList();
+                System.out.println("Payments= "+payments.getString("transnum"));
+
+                row.add(payments.getString("transnum")+"");
+                row.add(payments.getString("method")+"");
+                row.add(payments.getString("datePaid")+"");
+                data.add(row);
             }
+            dataOnline.init(data,"",false);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
+
+
+
+        dataOnline.getOnDataSelected(event -> {
+            ArrayList<NameValuePair> where2 = new ArrayList<NameValuePair>();
+            where2.add(new BasicNameValuePair("ordercode",ordercode));
+            where2.add(new BasicNameValuePair("status","Pending"));
+            payments = tblPayments.get(where2);
+            String selected = dataOnline.getSelected(payments, "uid");
+            ResultSet selectedPay = tblPayments.get(selected);
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            try {
+                selectedPay.first();
+                alert.setTitle(selectedPay.getString("transnum")+"");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            alert.setHeaderText("What do you want to do?");
+
+            ButtonType btnValidate = new ButtonType("Validate");
+            ButtonType btnConfirm = new ButtonType("Confirm");
+            ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            alert.getButtonTypes().setAll(btnValidate, btnConfirm, buttonTypeCancel);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == btnValidate) {
+
+            } else if (result.get() == btnConfirm) {
+                ArrayList<NameValuePair> data = new ArrayList<NameValuePair>();
+                data.add(new BasicNameValuePair("status","Confirmed"));
+                tblPayments.save(data,selected);
+                loadOnlinePayments();
+                try {
+                    load();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        });
+
     }
 
 
     void load() throws SQLException {
+
         ArrayList<NameValuePair> where = new ArrayList<NameValuePair>();
         where.add(new BasicNameValuePair("ordercode",ordercode));
-        payments = tblPayments.get(where);
         orders = tblorders.get(where);
+        where.add(new BasicNameValuePair("status","Confirmed"));
+        payments = tblPayments.get(where);
+
         orders.first();
         deceased = tbldeceased.get(orders.getString("deceased"));
         deceased.first();
@@ -128,6 +183,7 @@ public class WakePayment {
             row.add(payments.getString("datePaid"));
             data.add(row);
         }
+
         dataTable.init(data,"",false);
     }
 
@@ -161,27 +217,37 @@ public class WakePayment {
             nvp.add(new BasicNameValuePair("ordercode",ordercode));
             ResultSet newOrd = tblorders.get(nvp);
             nvp.clear();
-            try {
-                newOrd.first();
-                if(newOrd.getString("status").equalsIgnoreCase("Partial")){
-                    nvp.add(new BasicNameValuePair("status","Paid"));
-                }else if(newOrd.getString("status").equalsIgnoreCase("Balance")){
-                    nvp.add(new BasicNameValuePair("status","Complete"));
+            if(amountPaid >= remaining) {
+                try {
+                    newOrd.first();
+                    if (newOrd.getString("status").equalsIgnoreCase("Partial")) {
+                        nvp.add(new BasicNameValuePair("status", "Paid"));
+                    } else if (newOrd.getString("status").equalsIgnoreCase("Balance")) {
+                        nvp.add(new BasicNameValuePair("status", "Complete"));
+                    }
+                    tblorders.save(nvp, newOrd.getString("id"));
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
-                tblorders.save(nvp,newOrd.getString("id"));
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
 
 
-            try {
-                load();
-                lblChange.setVisible(false);
-                lblChangeData.setText("");
-                txtPayment.setText("");
-                printReceipt(ordercode,total+"",amountPaid+"",change+"");
-            } catch (SQLException e) {
-                e.printStackTrace();
+                try {
+                    load();
+                    lblChange.setVisible(false);
+                    lblChangeData.setText("");
+                    txtPayment.setText("");
+                    printReceipt(ordercode, total + "", amountPaid + "", change + "");
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }else{
+                try {
+                    load();
+                    lblChange.setVisible(true);
+                    printReceipt(ordercode, total + "", amountPaid + "", change + "");
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
 
         }else{

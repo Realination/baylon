@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<AnchorPane prefHeight="591.0" prefWidth="606.0" styleClass="root" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baylon.controllers.DeceasedList">
+
+<AnchorPane prefHeight="628.0" prefWidth="606.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baylon.controllers.DeceasedList">
     <children>
-      <SplitPane fx:id="DeceasedSplit" dividerPositions="1.0" layoutX="3.0" layoutY="7.0" orientation="VERTICAL" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane fx:id="DeceasedSplit" dividerPositions="1.0" layoutX="3.0" layoutY="7.0" orientation="VERTICAL" prefHeight="806.0" prefWidth="606.0" AnchorPane.bottomAnchor="-178.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
             <AnchorPane fx:id="anchorLeft" prefHeight="0.0" prefWidth="604.0" styleClass="root">
                <children>
@@ -18,12 +22,57 @@
                   <Button layoutX="494.0" layoutY="59.0" mnemonicParsing="false" onAction="#addNewDeceased" styleClass="btn-primary" text="Add New" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="59.0" />
                </children>
             </AnchorPane>
-            <Pane prefHeight="200.0" prefWidth="200.0">
+            <Pane prefHeight="543.0" prefWidth="604.0">
                <children>
-                  <AnchorPane fx:id="newDeceasedAnchor" prefHeight="395.0" prefWidth="627.0" styleClass="root">
+                  <AnchorPane fx:id="newDeceasedAnchor" prefHeight="610.0" prefWidth="670.0" styleClass="root">
                      <children>
-                        <Button layoutX="469.0" layoutY="29.0" mnemonicParsing="false" onAction="#ViewDeceased" styleClass="btn-primary" text="ViewDeceased" AnchorPane.rightAnchor="42.0" AnchorPane.topAnchor="59.0" />
-                        <AnchorPane layoutX="14.0" layoutY="98.0" prefHeight="286.0" prefWidth="578.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="98.0" />
+                        <Button layoutX="440.0" layoutY="33.0" mnemonicParsing="false" onAction="#ViewDeceased" styleClass="btn-primary" text="ViewDeceased" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="33.0" />
+                        <AnchorPane fx:id="AnchorForm" layoutX="-2.0" layoutY="87.0" prefHeight="386.0" prefWidth="585.0" AnchorPane.bottomAnchor="-56.0" AnchorPane.leftAnchor="-3.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="86.0">
+                           <children>
+                              <TextField fx:id="fname" layoutX="24.0" layoutY="42.0" prefHeight="30.0" prefWidth="163.0" promptText="FIRSTNAME" />
+                              <TextField fx:id="mname" layoutX="201.0" layoutY="42.0" prefHeight="30.0" prefWidth="149.0" promptText="MIDDLENAME" />
+                              <TextField fx:id="lname" layoutX="361.0" layoutY="42.0" prefHeight="30.0" prefWidth="217.0" promptText="LASTNAME" />
+                              <TextField fx:id="container" layoutX="24.0" layoutY="166.0" prefHeight="30.0" prefWidth="156.0" promptText=" CONTAINER/CASKET" />
+                              <Label layoutX="27.0" layoutY="18.0" text="First Name" />
+                              <Label layoutX="200.0" layoutY="17.0" text="Middle Name" />
+                              <Label layoutX="361.0" layoutY="19.0" text="Last Name" />
+                              <ComboBox fx:id="sex" layoutX="24.0" layoutY="105.0" prefHeight="30.0" prefWidth="129.0" promptText="SEX" />
+                              <Label layoutX="31.0" layoutY="84.0" text="Sex" />
+                              <DatePicker fx:id="date_of_birth" layoutX="165.0" layoutY="105.0" prefHeight="30.0" prefWidth="176.0" />
+                              <Label layoutX="166.0" layoutY="84.0" text="Birth Date" />
+                              <Label layoutX="359.0" layoutY="81.0" text="Age" />
+                              <TextField fx:id="age" layoutX="359.0" layoutY="104.0" prefHeight="30.0" prefWidth="45.0" promptText="AGE" />
+                              <Label layoutX="30.0" layoutY="144.0" text="Container" />
+                              <TextField fx:id="weight" layoutX="419.0" layoutY="104.0" prefHeight="30.0" prefWidth="74.0" promptText="WEIGHT" />
+                              <Label layoutX="419.0" layoutY="81.0" text="Weight" />
+                              <Label layoutX="503.0" layoutY="81.0" text="Height" />
+                              <TextField fx:id="height" layoutX="503.0" layoutY="104.0" prefHeight="30.0" prefWidth="74.0" promptText="HEIGHT" />
+                              <Label layoutX="198.0" layoutY="144.0" text="Cause Of Death" />
+                              <TextField fx:id="cause_of_death" layoutX="194.0" layoutY="166.0" prefHeight="30.0" prefWidth="156.0" promptText="CAUSE OF DEATH" />
+                              <TextField fx:id="place_of_death" layoutX="361.0" layoutY="166.0" prefHeight="30.0" prefWidth="217.0" promptText="PLACE OF DEATH" />
+                              <Label layoutX="365.0" layoutY="144.0" text="Place Of Death" />
+                              <Label layoutX="26.0" layoutY="205.0" text="Date of Death" />
+                              <DatePicker fx:id="date_death" layoutX="25.0" layoutY="226.0" prefHeight="30.0" prefWidth="176.0" />
+                              <TextField fx:id="age_at_the_time_of_death" layoutX="216.0" layoutY="226.0" prefHeight="30.0" prefWidth="97.0" promptText="AGE DEATH" />
+                              <Label layoutX="216.0" layoutY="203.0" text="Age Death" />
+                              <Label layoutX="328.0" layoutY="203.0" text="Autopsied" />
+                              <ComboBox fx:id="autopsied" layoutX="324.0" layoutY="224.0" prefHeight="30.0" prefWidth="84.0" promptText="Yes" />
+                              <Label layoutX="415.0" layoutY="202.0" prefHeight="20.0" prefWidth="129.0" text="Performng Person" />
+                              <TextField fx:id="person_institution" layoutX="417.0" layoutY="224.0" prefHeight="30.0" prefWidth="163.0" promptText=" PERFORMING PERSON" />
+                              <TextField fx:id="casket_desc" layoutX="26.0" layoutY="286.0" prefHeight="30.0" prefWidth="237.0" promptText="CASKET DESCRIPTION" />
+                              <Label layoutX="24.0" layoutY="264.0" prefHeight="20.0" prefWidth="129.0" text="Casket Description" />
+                              <Label layoutX="274.0" layoutY="263.0" text="Casket Size" />
+                              <TextField fx:id="casket_size" layoutX="274.0" layoutY="286.0" prefHeight="30.0" prefWidth="97.0" promptText="CASKET SIZE" />
+                              <TextField fx:id="duration_embalming" layoutX="384.0" layoutY="285.0" prefHeight="30.0" prefWidth="195.0" promptText="DURATION OF EMBALMING" />
+                              <Label layoutX="384.0" layoutY="262.0" text="Duration Of Embalming" />
+                              <TextArea fx:id="other_instruction" layoutX="26.0" layoutY="344.0" prefHeight="53.0" prefWidth="556.0" promptText="OTHER INSTRUCTIONS" />
+                              <Label layoutX="24.0" layoutY="322.0" prefHeight="20.0" prefWidth="129.0" text="Other Instructions" />
+                              <ComboBox fx:id="death_certificate" layoutX="26.0" layoutY="418.0" prefHeight="30.0" prefWidth="116.0" promptText="Yes" />
+                              <Label layoutX="33.0" layoutY="397.0" text="Death Certificate" />
+                              <Label layoutX="163.0" layoutY="397.0" text="Service Contract" />
+                              <ComboBox fx:id="service_contract" layoutX="156.0" layoutY="418.0" prefHeight="30.0" prefWidth="116.0" promptText="Yes" />
+                              <Button layoutX="519.0" layoutY="485.0" mnemonicParsing="false" onAction="#saveDeceased" styleClass="btn-success" text="Save" />
+                           </children></AnchorPane>
                      </children>
                   </AnchorPane>
                </children>

@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="doxia-sink-api-1.2">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/repository/org/apache/maven/doxia/doxia-sink-api/1.2/doxia-sink-api-1.2.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

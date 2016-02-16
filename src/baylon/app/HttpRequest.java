@@ -63,6 +63,7 @@ public class HttpRequest {
                 constants.addValue("netStat","Online");
 
             }catch (Exception e){}
+            System.out.println(respon);
             return respon;
         }catch(IOException e) {
             httppost.abort();

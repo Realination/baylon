@@ -278,6 +278,11 @@
   -fx-border-color: #46b8da;
 }
 
+.btn-disabled {
+    -fx-background-color: #828892;
+    -fx-border-color: rgba(105, 100, 105, 0.100);
+}
+
 .orderingForm{
     -fx-background-color: #181009;
 }

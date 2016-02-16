@@ -112,6 +112,56 @@ public abstract class Model {
 
     }
 
+
+    public void save(ArrayList<NameValuePair> data,ArrayList<NameValuePair> where) {
+        Connection conn;
+        String fields = "";
+        String strWhere = "";
+
+        data =  funcs.addUpdatedAt(data);
+
+        int c = 0;
+        for (NameValuePair datum : data) {
+            fields += "`"+datum.getName()+"` = ?";
+            if(data.size()-1 > c){
+                fields += ",";
+            }
+            c++;
+        }
+
+        int w = 0;
+        for (NameValuePair wher : where) {
+            strWhere += " `"+wher.getName()+"` LIKE '"+wher.getValue()+"' ";
+            if(where.size()-1 > w){
+                strWhere += "AND";
+            }
+            w++;
+        }
+
+        try{
+            conn=DBConnection.getConnection();
+            String query = "UPDATE `"+tblName()+"` SET  "+fields+" WHERE "+strWhere;
+            System.out.println(query);
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            int i = 1;
+            for (NameValuePair datum : data) {
+                preparedStmt.setString(i, datum.getValue());
+                i++;
+            }
+
+
+            // execute the java preparedstatement
+            preparedStmt.execute();
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+            System.out.println("Error");
+
+        }
+
+    }
+
     public ResultSet getAllAndSort(String fld){
         ResultSet result = null;
         Connection conn;
@@ -166,7 +216,7 @@ public abstract class Model {
 
            int i=0;
            for (NameValuePair datum : data) {
-                where += " `"+datum.getName()+"` LIKE '"+datum.getValue()+"'";
+                where += " `"+datum.getName()+"` LIKE ?";
                     if(data.size()-1 > i){
                         where += " AND";
                     }
@@ -175,11 +225,22 @@ public abstract class Model {
 
         Connection conn;
         try{
+
             conn = DBConnection.getConnection();
-            Statement stmt = conn.createStatement();
+//            Statement stmt = conn.createStatement();
             String sql = "SELECT * FROM `"+tblName()+"` WHERE "+where;
-            result = stmt.executeQuery(sql);
             System.out.println(sql);
+            PreparedStatement ps = conn.prepareStatement(sql);
+//            result = stmt.executeQuery(sql);
+
+            int c=1;
+            for (NameValuePair datum : data) {
+                ps.setString(c, datum.getValue());
+                c++;
+            }
+
+            result = ps.executeQuery();
+
         }catch(Exception e){
             e.printStackTrace();
             System.out.println("Error");

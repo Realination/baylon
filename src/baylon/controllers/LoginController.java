@@ -89,6 +89,7 @@ public class LoginController implements Initializable {
             System.out.println("login");
             contstants.addValue("logged_user",result.getString("name"));
             contstants.addValue("admin_id",result.getString("id"));
+            contstants.addValue("user_level",result.getString("position"));
              openDashboard();
         }else{
             System.out.println("error");

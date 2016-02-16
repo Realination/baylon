@@ -6,6 +6,7 @@
 package baylon.controllers;
 
 import baylon.app.Constants;
+import baylon.app.Form;
 import de.jensd.shichimifx.utils.SplitPaneDividerSlider;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -49,7 +50,7 @@ public class DashboardController implements Initializable {
     @FXML
      Pane contentPane;
     @FXML
-    Button btnBackToMenu;
+    Button btnBackToMenu,btnOrdering,btnUtility,btnPendingOrds,btnCurrentWakes,btnCustomerList,btnDeceasedList,btnInventory,btnPersonelMaint,btnPackageMaint,btnServicesMaint,btnPendingPickup,btnReports;
     @FXML
     AnchorPane contentContainer;
     @FXML
@@ -73,11 +74,58 @@ public class DashboardController implements Initializable {
     Timer t = new Timer();
 
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        constants = Constants.getInstance();
+
+
+        if(constants.getValue("user_level").equalsIgnoreCase("secretary")){
+            btnUtility.setDisable(true);
+            btnPendingOrds.setDisable(true);
+            btnCurrentWakes.setDisable(true);
+            btnCustomerList.setDisable(true);
+            btnDeceasedList.setDisable(true);
+            btnInventory.setDisable(true);
+            btnPersonelMaint.setDisable(true);
+            btnPackageMaint.setDisable(true);
+            btnServicesMaint.setDisable(true);
+            btnPendingPickup.setDisable(true);
+            btnReports.setDisable(true);
+
+            btnUtility.getStyleClass().add("btn-disabled");
+            btnPendingOrds.getStyleClass().add("btn-disabled");
+            btnCurrentWakes.getStyleClass().add("btn-disabled");
+            btnCustomerList.getStyleClass().add("btn-disabled");
+            btnDeceasedList.getStyleClass().add("btn-disabled");
+            btnInventory.getStyleClass().add("btn-disabled");
+            btnPersonelMaint.getStyleClass().add("btn-disabled");
+            btnPackageMaint.getStyleClass().add("btn-disabled");
+            btnServicesMaint.getStyleClass().add("btn-disabled");
+            btnPendingPickup.getStyleClass().add("btn-disabled");
+            btnReports.getStyleClass().add("btn-disabled");
+        }else{
+
+            btnUtility.getStyleClass().add("mmenu");
+            btnPendingOrds.getStyleClass().add("mmenu");
+            btnCurrentWakes.getStyleClass().add("mmenu");
+            btnCustomerList.getStyleClass().add("mmenu");
+            btnDeceasedList.getStyleClass().add("mmenu");
+            btnInventory.getStyleClass().add("mmenu");
+            btnPersonelMaint.getStyleClass().add("mmenu");
+            btnPackageMaint.getStyleClass().add("mmenu");
+            btnServicesMaint.getStyleClass().add("mmenu");
+            btnPendingPickup.getStyleClass().add("mmenu");
+            btnReports.getStyleClass().add("mmenu");
+        }
+
+
+
+
+
+
+
         t.schedule(new TimerTask() {
             @Override
             public void run() {
-                constants = Constants.getInstance();
+
                 if(constants.getValue("netStat").equalsIgnoreCase("Online")){
                     statsCircle.setFill(Color.GREEN);
 //                    lblnetStats.setText("Online");
@@ -157,10 +205,33 @@ public class DashboardController implements Initializable {
     }
 
     @FXML
-    public void DeceasedList()
-    {
+    public void DeceasedList() {
         leftSplitPaneDividerSlider.setAimContentVisible(false);
         OpenPage("/baylon/views/DeceasedList.fxml");
+    }
+
+    @FXML
+    public  void packageMaintenance(){
+        leftSplitPaneDividerSlider.setAimContentVisible(false);
+        OpenPage("/baylon/views/PackageMaint.fxml");
+    }
+
+    @FXML
+    public void inventoryMaintenance(){
+        leftSplitPaneDividerSlider.setAimContentVisible(false);
+        OpenPage("/baylon/views/InventoryMaintenance.fxml");
+    }
+
+    @FXML
+    public void pendingPickups(){
+        leftSplitPaneDividerSlider.setAimContentVisible(false);
+        OpenPage("/baylon/views/Pickups.fxml");
+    }
+
+    @FXML
+    public void openUtilities(){
+        leftSplitPaneDividerSlider.setAimContentVisible(false);
+        OpenPage("/baylon/views/Utilities.fxml");
     }
 
     @FXML

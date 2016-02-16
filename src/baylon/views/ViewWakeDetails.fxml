@@ -1,17 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="476.0" prefWidth="606.0" styleClass="root" xmlns="http://javafx.com/javafx/null"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="baylon.controllers.ViewWakeDetails">
+<AnchorPane prefHeight="543.0" prefWidth="1251.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baylon.controllers.ViewWakeDetails">
     <children>
-
+        <Label fx:id="lblHeader" alignment="CENTER" layoutX="7.0" prefHeight="44.0" prefWidth="606.0" style="-fx-background-color:#333" styleClass="h4,text-white" text="Wake Maintenance" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <TableView fx:id="tableServices" layoutX="21.0" layoutY="190.0" prefHeight="299.0" prefWidth="763.0" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="21.0" AnchorPane.topAnchor="190.0">
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Label layoutX="21.0" layoutY="50.0" prefHeight="20.0" prefWidth="72.0" text="Deceased:" wrapText="true" AnchorPane.leftAnchor="21.0" AnchorPane.topAnchor="50.0" />
+      <Label fx:id="lblDeceased" layoutX="92.0" layoutY="50.0" prefHeight="20.0" prefWidth="218.0" text="Label" AnchorPane.leftAnchor="92.0" AnchorPane.rightAnchor="661.0" AnchorPane.topAnchor="50.0" />
+      <Label fx:id="lblCustomer" layoutX="93.0" layoutY="67.0" prefHeight="20.0" prefWidth="218.0" text="Label" AnchorPane.leftAnchor="93.0" AnchorPane.topAnchor="67.0" />
+      <Label layoutX="22.0" layoutY="67.0" prefHeight="20.0" prefWidth="72.0" text="Customer:" wrapText="true" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="67.0" />
+      <Pane fx:id="detailsPane" layoutX="802.0" layoutY="164.0" prefHeight="256.0" prefWidth="434.0" styleClass="loginPane" visible="false" AnchorPane.rightAnchor="15.0">
+         <children>
+            <ImageView fx:id="imgService" fitHeight="213.0" fitWidth="203.0" layoutX="44.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="21.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="22.0" />
+            <Button fx:id="btnProvide" layoutX="290.0" layoutY="201.0" mnemonicParsing="false" onAction="#proviceService" prefHeight="32.0" prefWidth="140.0" styleClass="btn-success" text="Provide" />
+            <Label layoutX="262.0" layoutY="31.0" styleClass="text-white" text="Service:" />
+            <Label layoutX="262.0" layoutY="51.0" styleClass="text-white" text="Type:" />
+            <Label fx:id="lblService" layoutX="309.0" layoutY="32.0" prefHeight="20.0" prefWidth="114.0" styleClass="text-white" text="Label" />
+            <Label fx:id="lblType" layoutX="309.0" layoutY="51.0" prefHeight="20.0" prefWidth="114.0" styleClass="text-white" text="Label" />
+         </children>
+      </Pane>
+      <Label layoutX="22.0" layoutY="78.0" styleClass="h4" text="Casket:" AnchorPane.leftAnchor="22.0" AnchorPane.topAnchor="78.0" />
+      <Label fx:id="lblCasket" layoutX="81.0" layoutY="78.0" prefHeight="47.0" prefWidth="650.0" styleClass="h4" text="Label" AnchorPane.leftAnchor="81.0" AnchorPane.topAnchor="78.0" />
+      <Button fx:id="btnProvideCasket" layoutX="25.0" layoutY="142.0" mnemonicParsing="false" onAction="#provideCasket" prefHeight="32.0" prefWidth="173.0" styleClass="btn-success" text="Provide Casket" />
+      <Label layoutX="23.0" layoutY="98.0" styleClass="h4" text="Caskets in Inventory:" />
+      <Label fx:id="lblCasketCount" layoutX="189.0" layoutY="99.0" prefHeight="47.0" prefWidth="650.0" styleClass="h4" text="Label" />
+      <Button fx:id="btnEndWake" layoutX="202.0" layoutY="142.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="173.0" styleClass="btn-danger" text="End Wake" />
     </children>
     <stylesheets>
-        <URL value="@css/fextile.css"/>
+        <URL value="@css/fextile.css" />
     </stylesheets>
 </AnchorPane>

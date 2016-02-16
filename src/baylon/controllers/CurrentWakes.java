@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
+import javax.swing.text.View;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,11 +46,10 @@ public class CurrentWakes {
     public void initialize() throws SQLException {
         ArrayList<NameValuePair> nvp = new ArrayList<NameValuePair>();
         nvp.add(new BasicNameValuePair("status","Processing"));
-        nvp.add(new BasicNameValuePair("status","Paid"));
         nvp.add(new BasicNameValuePair("status","Transfered"));
         nvp.add(new BasicNameValuePair("status","Complete"));
         orders = tblorders.getNot(nvp);
-        orders.first();
+        orders.beforeFirst();
 
         DataTable dataTable = new DataTable(tableWakes);
 
@@ -82,7 +82,7 @@ public class CurrentWakes {
         dataTable.getOnDataSelected(new EventHandler<Event>() {
             @Override
             public void handle(Event event) {
-                selectOptions(tableWakes.getSelectionModel().getSelectedIndex());
+                selectOptions(dataTable.getSelected(orders,"id"));
             }
         });
 
@@ -93,16 +93,10 @@ public class CurrentWakes {
 
 
 
-    private void selectOptions(int selectedIndex) {
-        System.out.println("selected index="+selectedIndex);
+    private void selectOptions(String ordId) {
+        System.out.println("ordId="+ordId);
         try {
-            orders.first();
-            int c = 0;
-            while (c <= selectedIndex){
-                orders.next();
-                c++;
-            }
-            String ordId = orders.getString("id");
+
 
         if(orders.getString("status").equalsIgnoreCase("Partial") || orders.getString("status").equalsIgnoreCase("Balance")){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -122,7 +116,7 @@ public class CurrentWakes {
                 wakePayment(orders.getString("ordercode")+"");
             }
         }else{
-            wakePayment(orders.getString("ordercode")+"");
+            wakeProcess(orders.getString("ordercode") + "");
         }
 
         } catch (SQLException e) {
@@ -134,10 +128,34 @@ public class CurrentWakes {
     }
 
     private void wakeProcess(String ordercode) {
+
         Stage stage = new Stage();
+
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/baylon/views/ViewWakeDetails.fxml"));
-        Functions.openScene(fxmlLoader,stage,"Baylon | Process  Wake",true,true);
-        System.out.println("Select");
+        Parent root = null;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ViewWakeDetails controller = fxmlLoader.getController();
+
+        stage.setScene(new Scene(root));
+
+            System.out.print(ordercode);
+        try {
+            controller.init(ordercode);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        stage.setWidth(Screen.getMainScreen().getWidth());
+        stage.setHeight(Screen.getMainScreen().getHeight());
+//        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setMaximized(true);
+        stage.setTitle("Baylon | Wake Maintenance");
+        stage.show();
     }
 
     private void wakePayment(String ordercode) {

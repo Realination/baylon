@@ -8,13 +8,18 @@ import baylon.models.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.image.WritableImage;
 import javafx.stage.Stage;
 import org.apache.http.HttpException;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -119,10 +124,31 @@ public class ReviewOrderController {
     void transferToCashier(){
         ArrayList<NameValuePair> nvp = new ArrayList<NameValuePair>();
         nvp.add(new BasicNameValuePair("status","Transfered"));
-        tblorders.save(nvp,constants.getValue("orderid"));
+        tblorders.save(nvp, constants.getValue("orderid"));
+        billingStatement(constants.getValue("ordercode"));
         Stage stage = (Stage) lblOrdercode.getScene().getWindow();
         stage.close();
     }
+
+
+    void billingStatement(String ordercode){
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/baylon/views/BillingStatement.fxml"));
+        Parent root = null;
+        try {
+            root = fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        BillingStatement controller = fxmlLoader.getController();
+        controller.init(ordercode);
+        Scene scene = new Scene(root);
+        WritableImage snapshot = scene.snapshot(null);
+        Stage stage = new Stage();
+//        stage.setScene(scene);
+//        stage.show();
+        Functions.print(snapshot, stage);
+    }
+
 
     @FXML
     void cancelOrder() throws URISyntaxException, HttpException {

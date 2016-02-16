@@ -1,16 +1,14 @@
 package baylon.controllers;
 
 
-import baylon.app.Constants;
-import baylon.app.DataTable;
-import baylon.app.Form;
-import baylon.app.TableHelper;
+import baylon.app.*;
 import baylon.models.Customers;
 import baylon.models.Orders;
 import com.sun.glass.ui.Screen;
 import de.jensd.shichimifx.utils.SplitPaneDividerSlider;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +26,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 import java.awt.image.BufferedImage;
@@ -75,14 +76,53 @@ public class SelectCustomerController {
         ObservableList<String> maritalStats = FXCollections.observableArrayList("Single", "Married", "Widow/Widower");
         marital.setItems(maritalStats);
 
-        ObservableList<String> regions = FXCollections.observableArrayList("Region IV", "Region V", "Region VI");
+
+        JSONArray jsonRegions = Functions.parseJson("/baylon/media/api/regions.js");
+        ObservableList<String> regions = FXCollections.observableArrayList();
+        for(int i=0; i<jsonRegions.length(); i++){
+            try {
+                String strRegion = jsonRegions.getString(i);
+                regions.add(strRegion);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+
         region.setItems(regions);
 
-        ObservableList<String> provinces = FXCollections.observableArrayList("Iloilo");
-        province.setItems(provinces);
+        region.setOnAction(event -> {
+              String strRegion = region.getValue().toString();
+            JSONArray jsonProvinces = Functions.parseJson("/baylon/media/api/regions/"+strRegion+"/provinces.js");
+                    ObservableList < String > provinces = FXCollections.observableArrayList();
+            for(int i=0; i<jsonProvinces.length(); i++){
+                try {
+                    String strProvince = jsonProvinces.getString(i);
+                    provinces.add(strProvince);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            province.setItems(provinces);
+        });
 
-        ObservableList<String> municipalities = FXCollections.observableArrayList("Leganes","Pototan");
-        municipality.setItems(municipalities);
+
+        province.setOnAction(event -> {
+            String strProvince = province.getValue().toString();
+            JSONArray jsonMunicipalities = Functions.parseJson("/baylon/media/api/provinces/"+strProvince+"/cities_and_municipalities.js");
+            ObservableList < String > municipalities = FXCollections.observableArrayList();
+            for(int i=0; i<jsonMunicipalities.length(); i++){
+                try {
+                    String strMunicipality = jsonMunicipalities.getString(i);
+                    municipalities.add(strMunicipality);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            municipality.setItems(municipalities);
+        });
+
+
 
         customers = tblcustomers.get();
         customers.first();
@@ -133,7 +173,7 @@ public class SelectCustomerController {
                 customers.next();
                 c++;
             }
-            String custId = customers.getString("id");
+            String custId = customers.getString("uid");
             constants.addValue("customer_id",custId);
             ArrayList<NameValuePair> nvp = new ArrayList<NameValuePair>();
             nvp.add(new BasicNameValuePair("customer",custId));
@@ -180,6 +220,7 @@ public class SelectCustomerController {
       ArrayList<NameValuePair> nvp = frmCustomer.getData();
       System.out.println(nvp);
         tblcustomers.save(nvp);
+        frmCustomer.clear();
     }
 
 

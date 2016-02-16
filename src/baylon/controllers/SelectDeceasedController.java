@@ -114,9 +114,9 @@ public class SelectDeceasedController {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == btnSelectDead){
-                selectDeceased(deceased.getString("id"));
+                selectDeceased(deceased.getString("uid"));
             } else if (result.get() == btnViewDead) {
-                viewDeceased(deceased.getString("id"));
+                viewDeceased(deceased.getString("uid"));
            }
 
         } catch (SQLException e) {

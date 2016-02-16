@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+
+<AnchorPane prefHeight="567.0" prefWidth="679.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baylon.controllers.Pickups">
+    <children>
+        <Label fx:id="lblHeader" alignment="CENTER" layoutX="7.0" prefHeight="44.0" prefWidth="606.0" style="-fx-background-color:#333" styleClass="h4,text-white" text="Pending Pickups" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+        <SplitPane fx:id="pickupSplitPane" dividerPositions="1.0" layoutX="7.0" layoutY="48.0" orientation="VERTICAL" prefHeight="432.0" prefWidth="117.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="44.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="430.0" prefWidth="355.0" styleClass="root">
+                    <children>
+                        <TableView fx:id="tablePickups" layoutX="12.0" layoutY="114.0" prefHeight="309.0" prefWidth="649.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="113.0">
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                        </TableView>
+                        <Button layoutX="459.0" layoutY="7.0" mnemonicParsing="false" onAction="#switchToNew" styleClass="btn-primary" text="New Pickup" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="7.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="430.0" prefWidth="448.0" styleClass="root">
+                    <children>
+                        <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToExisting" styleClass="btn-primary" text="Pickup List" />
+                  <Label layoutX="32.0" layoutY="78.0" text="Name of Deceased" />
+                  <TextField fx:id="deceased" layoutX="32.0" layoutY="98.0" prefHeight="30.0" prefWidth="603.0" promptText="Name of Deceased" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="98.0" />
+                  <Label layoutX="37.0" layoutY="140.0" text="Location" />
+                  <TextArea fx:id="txtlocation" layoutX="32.0" layoutY="160.0" prefHeight="107.0" prefWidth="597.0" promptText="Enter Location of Deceased" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="36.0" />
+                  <Label layoutX="32.0" layoutY="280.0" text="Date of Pickup" />
+                  <DatePicker fx:id="dateofpickup" layoutX="36.0" layoutY="310.0" prefHeight="30.0" prefWidth="597.0" promptText="Date of Pickup" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="310.0" />
+                  <Button layoutX="531.0" layoutY="457.0" mnemonicParsing="false" onAction="#registerPickup" prefHeight="32.0" prefWidth="117.0" styleClass="btn-success" text="Register" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="457.0" />
+                  <Label layoutX="32.0" layoutY="360.0" text="Customer" />
+                  <ComboBox fx:id="customer" layoutX="31.0" layoutY="391.0" prefWidth="150.0" promptText="Select Customer" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="391.0" />
+                    </children></AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
+    <stylesheets>
+        <URL value="@css/fextile.css" />
+    </stylesheets>
+</AnchorPane>

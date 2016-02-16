@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="maven-filtering-1.0">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/repository/org/apache/maven/shared/maven-filtering/1.0/maven-filtering-1.0.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
